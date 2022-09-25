@@ -1,0 +1,32 @@
+<%- include('partials/head') %>
+
+<main>
+    <h1>Signup to join your very own BookClub</h1>
+
+    <form action="/signup" method="POST">
+        <div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email">
+            <span>We'll never share your email with anyone else.</span>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <label for="conformPassword">Confirm Password</label>
+            <input type="password" id="conformPassword" name="conformPassword">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</main>
+
+<%- include('partials/foot') %>
