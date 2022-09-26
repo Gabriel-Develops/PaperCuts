@@ -52,7 +52,7 @@ exports.postSignup = (req, res) => {
             req.logIn(user, (err) => {
                 if (err)
                     return next(err)
-                res.redirect('/') // Fix redirect to /profile
+                res.redirect('/feed')
             })
         })
     })
@@ -75,9 +75,6 @@ exports.getLogin = (req, res) => {
 }
 
 exports.postLogin = (req, res, next) => {
-    console.log(req.body)
-    
-
     const validationErrors = []
     if (!validator.isEmail(req.body.email))
         validationErrors.push({ msg: 'Please enter a valid email address.' })
@@ -105,7 +102,7 @@ exports.postLogin = (req, res, next) => {
             if (err)
                 return next(err)
             req.flash('success', { msg: 'Success! You are loggied in.' })
-            res.redirect(req.session.returnTo || '/') // Fix redirect to /profile
+            res.redirect(req.session.returnTo || '/feed')
         })
     })(req, res, next)
 }
