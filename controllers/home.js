@@ -1,5 +1,3 @@
-module.exports = {
-    getIndex: (req, res) => {
-        res.render('index.ejs')
-    }
+exports.getIndex =  (req, res) => {
+    res.render('index.ejs')
 }
