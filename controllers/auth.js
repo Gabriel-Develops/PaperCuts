@@ -51,7 +51,7 @@ module.exports = {
                 req.logIn(user, (err) => {
                     if (err)
                         return next(err)
-                    res.redirect('/')
+                    res.redirect('/') // Fix redirect to /profile
                 })
             })
         })
