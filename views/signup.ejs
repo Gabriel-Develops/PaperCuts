@@ -2,7 +2,13 @@
 
 <main>
     <h1>Signup to join your very own BookClub</h1>
-
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% locals.messages.errors.forEach( el => { %>
+                <p><%= el.msg %></p>
+            <% }) %>
+        <% } %>
+    </div>
     <form action="/signup" method="POST">
         <div>
             <label for="firstName">First Name</label>
