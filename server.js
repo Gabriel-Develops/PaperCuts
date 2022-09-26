@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const passport = require('passport')
 const morgan = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
@@ -8,6 +9,9 @@ const flash = require('express-flash')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 require('dotenv').config({ path: './config/.env' })
+
+// Passport config
+require('./config/passport')(passport)
 
 // Connect to Database
 const clientPromise = connectDB()
@@ -28,12 +32,16 @@ app.use(
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({
-        clientPromise: clientPromise,
-        autoRemove: 'interval',
-        autoRemoveInterval: 1
-      })
+            clientPromise: clientPromise,
+            autoRemove: 'interval',
+            autoRemoveInterval: 1
+        })
     })
-  );
+)
+
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Flash messages for errors, info, etc
 app.use(flash())
