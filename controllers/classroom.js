@@ -10,7 +10,14 @@ exports.createClassroom = async (req, res) => {
     res.redirect('/feed')
 }
 
-exports.getClassroom = (req, res) => {
+exports.getClassroom = async (req, res) => {
     console.log(req.params.classroomID)
-    res.redirect('/feed')
+    const classroom = await Classroom.findById(req.params.classroomID)
+    console.log(classroom)
+    console.log(req.user)
+    res.render('classroom', {
+        classroomName: classroom.name,
+        userName: req.user.firstName,
+        accountType: req.user.accountType
+    })
 }
