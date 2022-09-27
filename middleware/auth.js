@@ -12,5 +12,13 @@ module.exports = {
         } else {
             res.redirect('/feed')
         }
+    },
+    ensureInstructor: (req, res, next) => {
+        if (req.user.accountType === 'instructor'){
+            return next()
+        }
+        else {
+            res.redirect('/feed')
+        }
     }
 }

@@ -5,6 +5,18 @@
 
     <h1>Your are logged in!</h1>
     <h2>You are an Instructor!</h2>
+    <% if (classrooms) { %>
+        <section>
+            <% classrooms.forEach(x => { %>
+                <a href="/classroom/<%= x.id %>"><%= x.name %></a>
+            <% }) %>
+        </section>
+    <% } %>
+    <form action="/classroom" method="POST">
+        <label for="name">Name of your Classroom</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create Classroom</button>
+    </form>
     <a href="/logout">Logout</a>
 </main>
 
