@@ -5,6 +5,7 @@ const passport = require('passport')
 const morgan = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const methodOverride = require('method-override')
 const flash = require('express-flash')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
@@ -26,6 +27,9 @@ app.use(express.json())
 
 // Logger
 app.use(morgan('dev'))
+
+// Allows client side of PUT and DELETE
+app.use(methodOverride('_method'))
 
 // Setup Sessions - stored in MongoDB
 app.use(
