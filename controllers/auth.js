@@ -25,6 +25,9 @@ exports.postSignup = (req, res) => {
         return res.redirect("/signup")
     }
 
+    if (req.body.accountType !== 'student' && req.body.accountType !== 'instructor')
+        return res.redirect('/signup')
+
     req.body.email = validator.normalizeEmail(req.body.email, {
         gmail_remove_dots: false
     })
@@ -34,6 +37,7 @@ exports.postSignup = (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
+        accountType: req.body.accountType,
     })
     
 
