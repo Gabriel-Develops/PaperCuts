@@ -51,6 +51,9 @@ app.use(flash())
 // Setup Routes
 app.use("/", mainRoutes)
 app.use("/classroom", classroomRoutes)
+app.use('*', (req, res) => {
+    res.redirect('/')
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
