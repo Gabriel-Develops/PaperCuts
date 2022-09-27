@@ -15,6 +15,7 @@ require('./config/passport')(passport)
 
 // Connect to Database
 const clientPromise = connectDB()
+
 // EJS - View Engine
 app.set('view engine', 'ejs')
 
@@ -30,7 +31,7 @@ app.use(
     session({
       secret: "keyboard cat",
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
       store: MongoStore.create({
             clientPromise: clientPromise,
             autoRemove: 'interval',
