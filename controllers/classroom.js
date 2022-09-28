@@ -3,6 +3,14 @@ const validator = require('validator')
 const User = require('../models/User')
 
 exports.createClassroom = async (req, res) => {
+    const validationErrors = []
+    if (validator.isEmpty(req.body.name))
+        validationErrors.push({msg: 'Name of classroom can not be empty.'})
+    if (validationErrors.length) {
+        req.flash('errors', validationErrors)
+        return res.redirect(`/feed`)
+    }
+
     await Classroom.create({
         name: req.body.name,
         instructor: req.user.id

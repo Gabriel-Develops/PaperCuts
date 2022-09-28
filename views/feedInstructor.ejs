@@ -12,6 +12,13 @@
             <% }) %>
         </section>
     <% } %>
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% locals.messages.errors.forEach( el => { %>
+                <p><%= el.msg %></p>
+            <% }) %>
+        <% } %>
+    </div>
     <form action="/classroom" method="POST">
         <label for="name">Name of your Classroom</label>
         <input type="text" id="name" name="name">
