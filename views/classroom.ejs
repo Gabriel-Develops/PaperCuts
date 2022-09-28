@@ -4,10 +4,17 @@
     <h1>Welcome <%= userName %> to <%= classroomName %></h1>
     <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
     <%console.log(students)%>
-    <h1>Students in class are <%= students %></h1>
+    <h1>Students in class are <%= students.join(' ') %></h1>
 
     <% if (accountType === 'instructor') { %>
         <section>
+            <div>
+                <% if (locals.messages.errors) { %>
+                    <% locals.messages.errors.forEach( el => { %>
+                        <p><%= el.msg %></p>
+                    <% }) %>
+                <% } %>
+            </div>
             <form action="/classroom/<%= classroomID %>/addStudent?_method=PUT" method="POST">
                 <label for="studentEmail">Add a student by email</label>
                 <input type="text" id="studentEmail" name="studentEmail">

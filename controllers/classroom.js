@@ -27,19 +27,32 @@ exports.getClassroom = async (req, res) => {
 }
 
 exports.addStudent = async (req, res) => {
-    console.log(req.body)
-    console.log(req.params)
+    const validationErrors = []
+    if (validator.isEmpty(req.body.studentEmail))
+        validationErrors.push({msg: 'Please enter a student email.'})
+    if (!validator.isEmail(req.body.studentEmail))
+        validationErrors.push({msg: 'Please enter a valid email address.'})
+
+    if (validationErrors.length) {
+        req.flash('errors', validationErrors)
+        return res.redirect(`/classroom/${req.params.classroomID}`)
+    }
 
     req.body.studentEmail = validator.normalizeEmail(req.body.studentEmail, {
         gmail_remove_dots: false
     })
 
     const classroom = await Classroom.findById(req.params.classroomID)
-    const student = await User.find({email: req.body.studentEmail})
-    console.log(student,student.id, student._id)
-    if (!classroom.students.includes(student.id)) {
-        const newStudents = classroom.students.concat(student.id)
-        console.log(newStudents)
+    const studentToAdd = await User.findOne({email: req.body.studentEmail}).lean()
+
+    // Student was not found
+    if (!studentToAdd) {
+        req.flash('errors', [{msg: 'Student not found.'}])
+        return res.redirect(`/classroom/${req.params.classroomID}`)
+    }
+
+    if (!classroom.students.includes(studentToAdd._id) && studentToAdd.accountType === 'student') {
+        const newStudents = classroom.students.concat(studentToAdd._id)
         await Classroom.findByIdAndUpdate(req.params.classroomID, {
             students: newStudents
         })
