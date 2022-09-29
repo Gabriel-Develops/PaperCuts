@@ -28,7 +28,7 @@ exports.createBookclub = async (req, res) => {
     res.redirect('/feed')
 }
 
-exports.Bookclub = async (req, res) => {
+exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
     // console.log(bookclub)
     // console.log(req.user)

@@ -4,7 +4,7 @@
     <h1>Welcome <%= userName %> to <%= bookclubName %></h1>
     <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
     <%console.log(students)%>
-    <h1>Students in class are <%= students.join(' ') %></h1>
+    <h1>Students in bookclub are <%= students.join(' ') %></h1>
 
     <% if (accountType === 'instructor') { %>
         <section>
