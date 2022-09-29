@@ -4,6 +4,7 @@ const { ensureAuth, ensureInstructor } = require('../middleware/auth')
 
 // Bookclub Routes
 router.post('/', ensureAuth, ensureInstructor, bookclubController.createBookclub)
+router.put("/", ensureAuth, bookclubController.addBookclub)
 router.get('/:bookclubID', ensureAuth, bookclubController.getBookclub)
 router.put('/:bookclubID/addStudent', ensureAuth, ensureInstructor, bookclubController.addStudent)
 

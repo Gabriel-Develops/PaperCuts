@@ -12,6 +12,18 @@
             <% }) %>
         </section>
     <% } %>
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% locals.messages.errors.forEach( el => { %>
+                <p><%= el.msg %></p>
+            <% }) %>
+        <% } %>
+    </div>
+    <form action="/bookclub?_method=PUT" method="POST">
+        <label for="clubCode">Bookclub Code:</label>
+        <input type="text" name="clubCode" id="clubCode">
+        <button type="submit">Submit</button>
+    </form>
     <a href="/logout">Logout</a>
 </main>
 

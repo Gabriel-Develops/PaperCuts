@@ -76,3 +76,31 @@ exports.addStudent = async (req, res) => {
 
     res.redirect('/')
 }
+
+exports.addBookclub = async (req, res) => {
+    const validationErrors = []
+    if (validator.isEmpty(req.body.clubCode))
+        validationErrors.push({msg: 'Bookclub code can not be empty.'})
+
+    if (validationErrors.length) {
+        req.flash('errors', validationErrors)
+        return res.redirect('/feed')
+    }
+
+    const bookclub = await Bookclub.findOneAndUpdate({
+        // Condition - Find club with user specified ID, and Club where user isn't already enrolled
+        clubId: req.body.clubCode,
+        students: { $ne: req.user.id }
+    }, { 
+        // Update
+        $push: { 
+            students: req.user.id,
+        } 
+    })
+
+    if (!bookclub) {
+        req.flash('errors', [{msg: 'Bookclub not found with.'}])
+    }
+
+    res.redirect('/feed')
+}
