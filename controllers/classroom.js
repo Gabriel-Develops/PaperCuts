@@ -1,6 +1,7 @@
 const Classroom = require('../models/Classroom')
 const validator = require('validator')
 const User = require('../models/User')
+const nanoid = require('../middleware/nanoid')
 
 exports.createClassroom = async (req, res) => {
     const validationErrors = []
@@ -11,9 +12,16 @@ exports.createClassroom = async (req, res) => {
         return res.redirect(`/feed`)
     }
 
+    let clubId, found
+    do {
+        clubId = nanoid()
+        found = await Classroom.findOne({clubId: clubId})
+    } while (found)
+
     await Classroom.create({
         name: req.body.name,
-        instructor: req.user.id
+        instructor: req.user.id,
+        clubId: clubId,
     })
     console.log('Classroom has been created!')
 

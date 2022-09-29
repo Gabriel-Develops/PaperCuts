@@ -12,6 +12,10 @@ const ClassroomSchema = new mongoose.Schema({
     students: {
         type: [mongoose.Schema.Types.ObjectId],
     },
+    clubId: {
+        type: String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('Classroom', ClassroomSchema)
