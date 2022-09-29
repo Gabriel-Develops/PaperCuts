@@ -6,7 +6,9 @@ exports.getIndex =  (req, res) => {
 
 exports.getFeed = async (req, res) => {
     if (req.user.accountType === 'student'){
-        res.render('feedStudent')
+        const classrooms = await Classroom.find({'students': req.user.id})
+        // console.log(classrooms, req.user.id)
+        res.render('feedStudent', {classrooms: classrooms})
     }
     else if (req.user.accountType === 'instructor') {
         const classrooms = await Classroom.find({instructor: req.user.id})
