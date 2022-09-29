@@ -1,4 +1,4 @@
-const Classroom = require('../models/Classroom')
+const Bookclub = require('../models/Bookclub')
 
 exports.getIndex =  (req, res) => {
     res.render('index.ejs')
@@ -6,13 +6,13 @@ exports.getIndex =  (req, res) => {
 
 exports.getFeed = async (req, res) => {
     if (req.user.accountType === 'student'){
-        const classrooms = await Classroom.find({'students': req.user.id})
-        // console.log(classrooms, req.user.id)
-        res.render('feedStudent', {classrooms: classrooms})
+        const bookclubs = await Bookclub.find({'students': req.user.id})
+        // console.log(bookclubs, req.user.id)
+        res.render('feedStudent', {bookclubs: bookclubs})
     }
     else if (req.user.accountType === 'instructor') {
-        const classrooms = await Classroom.find({instructor: req.user.id})
-        res.render('feedInstructor', {classrooms: classrooms})
+        const bookclubs = await Bookclub.find({instructor: req.user.id})
+        res.render('feedInstructor', {bookclubs: bookclubs})
     }
     else {
         console.error('accountType incorrect', req.body.accountType)

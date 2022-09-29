@@ -9,7 +9,7 @@ const methodOverride = require('method-override')
 const flash = require('express-flash')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
-const classroomRoutes = require('./routes/classroom')
+const bookclubRoutes = require('./routes/bookclub')
 require('dotenv').config({ path: './config/.env' })
 
 // Passport config
@@ -54,7 +54,7 @@ app.use(flash())
 
 // Setup Routes
 app.use("/", mainRoutes)
-app.use("/classroom", classroomRoutes)
+app.use("/bookclub", bookclubRoutes)
 app.use('*', (req, res) => {
     res.redirect('/')
 })

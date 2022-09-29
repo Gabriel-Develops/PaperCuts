@@ -5,10 +5,10 @@
 
     <h1>Your are logged in!</h1>
     <h2>You are a Student!</h2>
-    <% if (classrooms) { %>
+    <% if (bookclubs) { %>
         <section>
-            <% classrooms.forEach(x => { %>
-                <a href="/classroom/<%= x.id %>"><%= x.name %></a>
+            <% bookclubs.forEach(x => { %>
+                <a href="/bookclub/<%= x.id %>"><%= x.name %></a>
             <% }) %>
         </section>
     <% } %>
