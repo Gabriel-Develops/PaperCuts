@@ -58,8 +58,10 @@ exports.addStudent = async (req, res) => {
         gmail_remove_dots: false
     })
 
-    const bookclub = await Bookclub.findById(req.params.bookclubID)
-    const studentToAdd = await User.findOne({email: req.body.studentEmail}).lean()
+    const studentToAdd = await User.findOne({
+        email: req.body.studentEmail,
+        accountType: 'student'
+    }).lean()
 
     // Student was not found
     if (!studentToAdd) {
@@ -67,14 +69,18 @@ exports.addStudent = async (req, res) => {
         return res.redirect(`/bookclub/${req.params.bookclubID}`)
     }
 
-    if (!bookclub.students.includes(studentToAdd._id) && studentToAdd.accountType === 'student') {
-        const newStudents = bookclub.students.concat(studentToAdd._id)
-        await Bookclub.findByIdAndUpdate(req.params.bookclubID, {
-            students: newStudents
-        })
-    }
+    await Bookclub.findOneAndUpdate({
+        // Condition
+        _id: req.params.bookclubID,
+        students: { $ne: studentToAdd._id }
+    }, {
+        // Update
+        $push: {
+            students: studentToAdd._id
+        }
+    })
 
-    res.redirect('/')
+    res.redirect(`/bookclub/${req.params.bookclubID}`)
 }
 
 exports.addBookclub = async (req, res) => {
