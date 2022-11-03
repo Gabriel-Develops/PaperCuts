@@ -1,0 +1,51 @@
+/* Login Page */
+#login-form {
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+}
+
+#login-form h1 {
+    text-align: center;
+    margin-block-end: 2rem;
+}
+
+#login-form label {
+    display: inline-block;
+    margin-block-end: .5rem;
+}
+
+#login-form input, #login-form button {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#login-form input {
+    border: 0;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+#login-form input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+#login-form button {
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    padding-block: .5rem;
+    background: linear-gradient(to right, #DAD7CD, #588157);
+}
+
+#login-form > p {
+    margin-block-start: 4rem;
+    text-align: center;
+    color: #666666;
+}

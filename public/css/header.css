@@ -1,0 +1,87 @@
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+/* List Style Reset */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    display: inline-block;
+}
+
+/* Heading Margin Reset */
+h1, h3 {
+    margin: 0;  
+}
+
+/* Anchor Styling */
+a {
+    color: Black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #6a7dfe;
+}
+
+/******************************************/
+/* BASE STYLES
+/******************************************/
+
+#error-message {
+    color: white;
+    background: #f8767e;
+    border-radius: 10px;
+    padding: 1rem .5rem;
+}
+
+
+/******************************************/
+/* LAYOUT
+/******************************************/
+/* Main Navigation Bar */
+#nav-main {
+    background: peachpuff;
+    display: flex;
+    padding-inline: 3%;
+}
+
+#nav-main section {
+    display: inline-block;
+    margin-block: auto;
+}
+
+#nav-links {
+    margin-inline-start: auto;
+}
+
+#nav-main ul li {
+    text-align: center;
+    border: 1px solid black;
+}
+
+footer {
+
+}
+
+/******************************************/
+/* ADDITIONAL STYLES
+/******************************************/
