@@ -1,5 +1,5 @@
 /* Login Page */
-#login-form {
+.club-form {
     border: 1px solid black;
     border-radius: 10px;
     position: absolute;
@@ -11,40 +11,71 @@
     padding-inline: 1.5rem;
 }
 
-#login-form h1 {
+.club-form h1 {
     text-align: center;
     margin-block-end: 2rem;
 }
 
-#login-form label {
+.club-form label {
     display: inline-block;
     margin-block-end: .5rem;
 }
 
-#login-form input, #login-form button {
+.club-form input[type='text'], 
+.club-form input[type='email'], 
+.club-form input[type='password'], 
+.club-form button {
     width: 100%;
     margin-bottom: 1rem;
 }
 
-#login-form input {
+.club-form button {
+    cursor: pointer;
+}
+
+.radio-input {
+    display: inline-block;
+    width: 50%;
+    border: 0;
+    text-align: center;
+    padding: .5rem;
+    margin-block: .5rem;
+}
+
+.radio-input input[type="radio"] {
+    display: none;
+}
+.radio-input label {
+    padding: .5rem 2rem;
+    cursor: pointer;
+    border: 1px solid #588157;
+    border-radius: 10px;
+  }
+.radio-input input[type="radio"]:checked + label {
+  background-color: #588157;
+  color: white;
+}
+
+.club-form input {
     border: 0;
     border-bottom: 1px solid #d9d9d9;
 }
 
-#login-form input:focus {
+.club-form input:focus {
     outline: none;
     border-bottom: 1px solid black;
 }
 
-#login-form button {
+.club-form button {
     color: white;
     border: 0;
     border-radius: 10px;
     padding-block: .5rem;
-    background: linear-gradient(to right, #DAD7CD, #588157);
+    background: linear-gradient(to right, #A3B18A, #588157);
+    text-transform: uppercase;
 }
 
-#login-form > p {
+.club-form > p {
     margin-block-start: 4rem;
     text-align: center;
     color: #666666;
