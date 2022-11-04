@@ -1,45 +1,52 @@
 <%- include('partials/header') %>
 
 <main>
-    <h1>Signup to join your very own BookClub</h1>
-    <div>
+    <section class="club-form">
+        <h1>Sign Up</h1>
+        <form action="/signup" method="POST">
+            <div>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="e.g. John">
+            </div>
+            <div>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Email Address">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+            <div>
+                <label for="confirmPassword">Re-type Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+            </div>
+            <div>
+                <span class="full-width">Type of Account:</span>
+                <div class="radio-input">
+                    <input type="radio" id="student" name="accountType" value="student" checked>
+                    <label for="student">Student</label>
+                </div><!--
+                --><div class="radio-input">
+                    <input type="radio" id="instructor" name="accountType" value="instructor">
+                    <label for="instructor">Instructor</label>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
         <% if (locals.messages.errors) { %>
-            <% locals.messages.errors.forEach( el => { %>
-                <p><%= el.msg %></p>
-            <% }) %>
+            <div class="error-message">
+                <h3>Error</h3>
+                <% locals.messages.errors.forEach( el => { %>
+                    <p><%= el.msg %></p>
+                <% }) %>
+            </div>
         <% } %>
-    </div>
-    <form action="/signup" method="POST">
-        <div>
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName">
-        </div>
-        <div>
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName">
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email">
-            <span>We'll never share your email with anyone else.</span>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <div>
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword">
-        </div>
-        <div>
-            <span>Type of Account:</span>
-            <label for="student">Student</label>
-            <input type="radio" id="student" name="accountType" value="student" checked>
-            <label for="instructor">Instructor</label>
-            <input type="radio" id="instructor" name="accountType" value="instructor">
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+    </section>
 </main>
 
 <%- include('partials/footer') %>
