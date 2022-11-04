@@ -46,13 +46,17 @@ a:hover {
 /* BASE STYLES
 /******************************************/
 
-#error-message {
+.error-message {
     color: white;
     background: #f8767e;
     border-radius: 10px;
     padding: 1rem .5rem;
 }
 
+.full-width {
+    display: inline-block;
+    width: 100%;
+}
 
 /******************************************/
 /* LAYOUT
