@@ -32,6 +32,8 @@ h1, h3 {
     margin: 0;  
 }
 
+
+
 /* Anchor Styling */
 a {
     color: Black;
@@ -40,6 +42,10 @@ a {
 
 a:hover {
     color: #6a7dfe;
+}
+
+html {
+    font-family: "Roboto", "Arial", sans-serif;
 }
 
 /******************************************/
@@ -63,9 +69,14 @@ a:hover {
 /******************************************/
 /* Main Navigation Bar */
 #nav-main {
-    background: peachpuff;
+    background: #3A5A40;
     display: flex;
     padding-inline: 3%;
+    padding-block: 1.5rem;
+}
+
+#nav-main h1 a {
+    color: white;
 }
 
 #nav-main section {
@@ -77,9 +88,18 @@ a:hover {
     margin-inline-start: auto;
 }
 
-#nav-main ul li {
-    text-align: center;
+#nav-links ul {
+    display: flex;
+    gap: 1rem;
+}
+
+#nav-main ul li a {
+    display: inline-block;
     border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 6px 6px 2px 1px #344e41;
+    background-color: white;
+    padding: .5rem 1rem;
 }
 
 footer {
