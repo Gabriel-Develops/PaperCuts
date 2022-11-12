@@ -1,0 +1,13 @@
+<nav id="nav-main">
+    <section>
+        <h1><a href="/">BookClub</a></h1>
+    </section>
+    <section id="nav-links">
+        <ul>
+            <% if (true || req.user) { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">SignUp</a></li>
+            <% } %>
+        </ul>
+    </section>
+</nav>
