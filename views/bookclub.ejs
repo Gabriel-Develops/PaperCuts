@@ -1,6 +1,7 @@
 <%- include('partials/header') %>
 
 <main>
+    <%- include('partials/nav') %>
     <h1>Welcome <%= userName %> to <%= bookclubName %></h1>
     <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
     <%console.log(students)%>

@@ -34,6 +34,7 @@ exports.getBookclub = async (req, res) => {
     // console.log(req.user)
     console.log(bookclub)
     res.render('bookclub', {
+        loggedIn: true,
         bookclubName: bookclub.name,
         userName: req.user.firstName,
         accountType: req.user.accountType,
