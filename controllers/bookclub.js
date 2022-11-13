@@ -18,14 +18,15 @@ exports.createBookclub = async (req, res) => {
         found = await Bookclub.findOne({clubId: clubId})
     } while (found)
 
-    await Bookclub.create({
+    const bookclub = await Bookclub.create({
         name: req.body.name,
         instructor: req.user.id,
         clubId: clubId,
     })
+
     console.log('Bookclub has been created!')
 
-    res.redirect('/feed')
+    res.redirect(`/bookclub/${bookclub.id}`)
 }
 
 exports.getBookclub = async (req, res) => {
