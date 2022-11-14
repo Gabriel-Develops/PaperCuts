@@ -133,3 +133,8 @@
     text-align: center;
     color: #666666;
 }
+
+/* Bookclub */
+.copy-code {
+    cursor: pointer;
+}

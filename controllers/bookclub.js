@@ -31,7 +31,6 @@ exports.createBookclub = async (req, res) => {
 
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
-    // console.log(bookclub)
     // console.log(req.user)
     console.log(bookclub)
     res.render('bookclub', {
@@ -40,7 +39,8 @@ exports.getBookclub = async (req, res) => {
         userName: req.user.firstName,
         accountType: req.user.accountType,
         students: bookclub.students,
-        bookclubID: bookclub.id
+        bookclubID: bookclub.id,
+        clubId: bookclub.clubId
     })
 }
 
