@@ -112,3 +112,8 @@ exports.addBookclub = async (req, res) => {
 
     res.redirect('/feed')
 }
+
+exports.deleteBookclub = async (req, res) => {
+    await Bookclub.findByIdAndDelete(req.params.bookclubID)
+    res.redirect('/feed')
+}
