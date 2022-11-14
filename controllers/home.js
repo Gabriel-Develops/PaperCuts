@@ -6,7 +6,9 @@ exports.getIndex =  (req, res) => {
 
 exports.getFeed = async (req, res) => {
     if (req.user.accountType === 'student'){
-        const bookclubs = await Bookclub.find({'students': req.user.id})
+        // We are searching through the student array in the bookclub objects
+        // $elemMatch is not necessary because this is a single query condition
+        const bookclubs = await Bookclub.find({students: req.user.id})
         res.render('feedStudent', {loggedIn: true, bookclubs: bookclubs})
     }
     else if (req.user.accountType === 'instructor') {
