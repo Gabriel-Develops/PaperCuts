@@ -8,6 +8,10 @@
         <form action="/bookclub/<%= bookclubID %>?_method=DELETE" method="POST">
             <button type="submit">Delete Bookclub</button>
         </form>
+    <% } else if (accountType === 'student') { %>
+        <form action="/bookclub/<%= bookclubID %>/leaveBookclub?_method=PUT" method="POST">
+            <button type="submit">Leave Bookclub</button>
+        </form>
     <% } %>
     <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
     <%console.log(students)%>

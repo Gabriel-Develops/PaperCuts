@@ -7,6 +7,7 @@ router.post('/', ensureAuth, ensureInstructor, bookclubController.createBookclub
 router.put("/", ensureAuth, bookclubController.addBookclub)
 router.get('/:bookclubID', ensureAuth, bookclubController.getBookclub)
 router.put('/:bookclubID/addStudent', ensureAuth, ensureInstructor, bookclubController.addStudent)
+router.put('/:bookclubID/leaveBookclub', ensureAuth, bookclubController.leaveBookclub)
 router.delete('/:bookclubID', ensureAuth, ensureInstructor, bookclubController.deleteBookclub)
 
 module.exports = router

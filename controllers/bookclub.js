@@ -31,8 +31,8 @@ exports.createBookclub = async (req, res) => {
 
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
-    // console.log(req.user)
-    console.log(bookclub)
+    console.log(req.user)
+    // console.log(bookclub)
     res.render('bookclub', {
         loggedIn: true,
         bookclubName: bookclub.name,
@@ -110,6 +110,23 @@ exports.addBookclub = async (req, res) => {
         req.flash('errors', [{msg: 'Bookclub not found with.'}])
     }
 
+    res.redirect('/feed')
+}
+
+exports.leaveBookclub = async (req, res) => {
+    console.log('Bookclub left!')
+    const temp = await Bookclub.findByIdAndUpdate(
+        // Condition (id)
+        req.params.bookclubID,
+        // Update
+        {
+            // Pull operator removes from an existing array all instances of a value that match a specified condition
+            $pull: {
+                students: req.user.id
+            }
+        }
+    )
+    console.log('result', temp)
     res.redirect('/feed')
 }
 
