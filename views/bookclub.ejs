@@ -4,9 +4,11 @@
     <%- include('partials/nav') %>
     <h1>Welcome <%= userName %> to <%= bookclubName %></h1> 
     <span>Join Code: <span class="copy-code" data-clubid="<%= clubId %>"><%= clubId %></span></span>
-    <form action="/bookclub/<%= bookclubID %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Bookclub</button>
-    </form>
+    <% if (accountType === 'instructor') { %>
+        <form action="/bookclub/<%= bookclubID %>?_method=DELETE" method="POST">
+            <button type="submit">Delete Bookclub</button>
+        </form>
+    <% } %>
     <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
     <%console.log(students)%>
     <% if (students.length) { %>
