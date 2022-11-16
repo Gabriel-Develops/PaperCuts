@@ -14,7 +14,7 @@
         </form>
     <% } %>
     <h1>You are a <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
-    <%console.log(readers)%>
+    <% //console.log(readers) %>
     <% if (readers.length) { %>
         <h1>Readers in bookclub are <%= readers.join(' ') %></h1>
     <% } else {%>
@@ -36,7 +36,18 @@
             </form>
         </section>
     <% } %>
-
+    <section>
+        <div>
+            <% if (locals.messages.threadError) { %>
+                <p><%= locals.messages.threadError[0] %></p>
+            <% } %>
+        </div>
+        <form action="/bookclub/<%= bookclubID %>/createThread" method="POST">
+            <input name="title" placeholder="Title" type="text">
+            <textarea name="description" placeholder="Text" rows="5" cols="33"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 
 </main>
 
