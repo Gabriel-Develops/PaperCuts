@@ -13,8 +13,8 @@ module.exports = {
             res.redirect('/feed')
         }
     },
-    ensureInstructor: (req, res, next) => {
-        if (req.user.accountType === 'instructor'){
+    ensureClubmaker: (req, res, next) => {
+        if (req.user.accountType === 'clubmaker'){
             return next()
         }
         else {

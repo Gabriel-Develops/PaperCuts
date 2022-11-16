@@ -4,23 +4,23 @@
     <%- include('partials/nav') %>
     <h1>Welcome <%= userName %> to <%= bookclubName %></h1> 
     <span>Join Code: <span class="copy-code" data-clubid="<%= clubId %>"><%= clubId %></span></span>
-    <% if (accountType === 'instructor') { %>
+    <% if (accountType === 'clubmaker') { %>
         <form action="/bookclub/<%= bookclubID %>?_method=DELETE" method="POST">
             <button type="submit">Delete Bookclub</button>
         </form>
-    <% } else if (accountType === 'student') { %>
+    <% } else if (accountType === 'reader') { %>
         <form action="/bookclub/<%= bookclubID %>/leaveBookclub?_method=PUT" method="POST">
             <button type="submit">Leave Bookclub</button>
         </form>
     <% } %>
-    <h1>You are a<%= accountType === 'instructor' ? 'n' : '' %> <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
-    <%console.log(students)%>
-    <% if (students.length) { %>
-        <h1>Students in bookclub are <%= students.join(' ') %></h1>
+    <h1>You are a <%= accountType[0].toUpperCase() + accountType.slice(1) %></h1>
+    <%console.log(readers)%>
+    <% if (readers.length) { %>
+        <h1>Readers in bookclub are <%= readers.join(' ') %></h1>
     <% } else {%>
-        <h1>No students in bookclub yet</h1>
+        <h1>No readers in bookclub yet</h1>
     <% } %>
-    <% if (accountType === 'instructor') { %>
+    <% if (accountType === 'clubmaker') { %>
         <section>
             <div>
                 <% if (locals.messages.errors) { %>
@@ -29,9 +29,9 @@
                     <% }) %>
                 <% } %>
             </div>
-            <form action="/bookclub/<%= bookclubID %>/addStudent?_method=PUT" method="POST">
-                <label for="studentEmail">Add a student by email</label>
-                <input type="text" id="studentEmail" name="studentEmail">
+            <form action="/bookclub/<%= bookclubID %>/addReader?_method=PUT" method="POST">
+                <label for="readerEmail">Add a reader by email</label>
+                <input type="text" id="readerEmail" name="readerEmail">
                 <button type="submit">Submit</button>
             </form>
         </section>

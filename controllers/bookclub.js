@@ -20,7 +20,7 @@ exports.createBookclub = async (req, res) => {
 
     const bookclub = await Bookclub.create({
         name: req.body.name,
-        instructor: req.user.id,
+        clubmaker: req.user.id,
         clubId: clubId,
     })
 
@@ -38,17 +38,17 @@ exports.getBookclub = async (req, res) => {
         bookclubName: bookclub.name,
         userName: req.user.firstName,
         accountType: req.user.accountType,
-        students: bookclub.students,
+        readers: bookclub.readers,
         bookclubID: bookclub.id,
         clubId: bookclub.clubId
     })
 }
 
-exports.addStudent = async (req, res) => {
+exports.addReader = async (req, res) => {
     const validationErrors = []
-    if (validator.isEmpty(req.body.studentEmail))
-        validationErrors.push({msg: 'Please enter a student email.'})
-    if (!validator.isEmail(req.body.studentEmail))
+    if (validator.isEmpty(req.body.readerEmail))
+        validationErrors.push({msg: 'Please enter a reader email.'})
+    if (!validator.isEmail(req.body.readerEmail))
         validationErrors.push({msg: 'Please enter a valid email address.'})
 
     if (validationErrors.length) {
@@ -56,29 +56,29 @@ exports.addStudent = async (req, res) => {
         return res.redirect(`/bookclub/${req.params.bookclubID}`)
     }
 
-    req.body.studentEmail = validator.normalizeEmail(req.body.studentEmail, {
+    req.body.readerEmail = validator.normalizeEmail(req.body.readerEmail, {
         gmail_remove_dots: false
     })
 
-    const studentToAdd = await User.findOne({
-        email: req.body.studentEmail,
-        accountType: 'student'
+    const readerToAdd = await User.findOne({
+        email: req.body.readerEmail,
+        accountType: 'reader'
     }).lean()
 
-    // Student was not found
-    if (!studentToAdd) {
-        req.flash('errors', [{msg: 'Student not found.'}])
+    // Reader was not found
+    if (!readerToAdd) {
+        req.flash('errors', [{msg: 'Reader not found.'}])
         return res.redirect(`/bookclub/${req.params.bookclubID}`)
     }
 
     await Bookclub.findOneAndUpdate({
         // Condition
         _id: req.params.bookclubID,
-        students: { $ne: studentToAdd._id }
+        readers: { $ne: readerToAdd._id }
     }, {
         // Update
         $push: {
-            students: studentToAdd._id
+            readers: readerToAdd._id
         }
     })
 
@@ -98,11 +98,11 @@ exports.addBookclub = async (req, res) => {
     const bookclub = await Bookclub.findOneAndUpdate({
         // Condition - Find club with user specified ID, and Club where user isn't already enrolled
         clubId: req.body.clubCode,
-        students: { $ne: req.user.id }
+        readers: { $ne: req.user.id }
     }, { 
         // Update
         $push: { 
-            students: req.user.id,
+            readers: req.user.id,
         } 
     })
 
@@ -122,7 +122,7 @@ exports.leaveBookclub = async (req, res) => {
         {
             // Pull operator removes from an existing array all instances of a value that match a specified condition
             $pull: {
-                students: req.user.id
+                readers: req.user.id
             }
         }
     )

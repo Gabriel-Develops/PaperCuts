@@ -25,7 +25,7 @@ exports.postSignup = (req, res) => {
         return res.redirect("/signup")
     }
 
-    if (req.body.accountType !== 'student' && req.body.accountType !== 'instructor')
+    if (req.body.accountType !== 'reader' && req.body.accountType !== 'clubmaker')
         return res.redirect('/signup')
 
     req.body.email = validator.normalizeEmail(req.body.email, {

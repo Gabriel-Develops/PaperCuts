@@ -5,11 +5,11 @@ const BookclubSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    instructor: {
+    clubmaker: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    students: {
+    readers: {
         type: [mongoose.Schema.Types.ObjectId],
     },
     clubId: {

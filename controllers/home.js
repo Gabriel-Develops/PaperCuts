@@ -5,15 +5,15 @@ exports.getIndex =  (req, res) => {
 }
 
 exports.getFeed = async (req, res) => {
-    if (req.user.accountType === 'student'){
-        // We are searching through the student array in the bookclub objects
+    if (req.user.accountType === 'reader'){
+        // We are searching through the reader array in the bookclub objects
         // $elemMatch is not necessary because this is a single query condition
-        const bookclubs = await Bookclub.find({students: req.user.id})
-        res.render('feedStudent', {loggedIn: true, bookclubs: bookclubs})
+        const bookclubs = await Bookclub.find({readers: req.user.id})
+        res.render('feedReader', {loggedIn: true, bookclubs: bookclubs})
     }
-    else if (req.user.accountType === 'instructor') {
-        const bookclubs = await Bookclub.find({instructor: req.user.id})
-        res.render('feedInstructor', {loggedIn: true, bookclubs: bookclubs})
+    else if (req.user.accountType === 'clubmaker') {
+        const bookclubs = await Bookclub.find({clubmaker: req.user.id})
+        res.render('feedClubmaker', {loggedIn: true, bookclubs: bookclubs})
     }
     else {
         console.error('accountType incorrect', req.body.accountType)
