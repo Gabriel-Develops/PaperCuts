@@ -12,7 +12,8 @@ exports.createThread = async (req, res) => {
         await Thread.create({
             title: req.body.title,
             description: req.body.description,
-            author: req.user._id
+            author: req.user._id,
+            bookclubId: req.params.bookclubID
         })
     } catch(e) {
         console.error(e)

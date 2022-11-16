@@ -13,6 +13,10 @@ const ThreadSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    bookclubId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     likes: {
         type: Number,
         required: true,
