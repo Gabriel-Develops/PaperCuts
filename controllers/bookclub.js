@@ -31,7 +31,7 @@ exports.createBookclub = async (req, res) => {
 
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
-    console.log(req.user)
+    // console.log(req.user)
     // console.log(bookclub)
     res.render('bookclub', {
         loggedIn: true,
