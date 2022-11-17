@@ -1,4 +1,5 @@
 const Bookclub = require('../models/Bookclub')
+const Thread = require('../models/Thread')
 const validator = require('validator')
 const User = require('../models/User')
 const nanoid = require('../middleware/nanoid')
@@ -31,16 +32,51 @@ exports.createBookclub = async (req, res) => {
 
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
+    const threadsFromDB = await Thread.find({
+        bookclubId: req.params.bookclubID
+    })
+    const threadsForFrontend = []
+    for (const thread of threadsFromDB) {
+        const author = await User.findById(thread.author)
+        threadsForFrontend.push({
+            id: thread._id,
+            createdBy: author.firstName,
+            title: thread.title,
+            description: thread.description,
+            likes: thread.likes,
+            creadtedAt: thread.createdAt
+        })
+    }
+    // We could do clean up the threads using a map, but since we have an asynchronious action we would need to use Promise.all to resolve the array of promises that would be returned, this is a valid solution but using a for...of loop feels more readable
+    // const threads = await Promise.all(threadsFromDB.map(async thread => {
+    //     const author = await User.findById(thread.author)
+    //     return {
+    //         threadId: thread._id,
+    //         createdBy: author.firstName,
+    //         title: thread.title,
+    //         description: thread.description,
+    //         likes: thread.likes,
+    //         createdAt: thread.createdAt
+    //     }
+    // }))
+
+    // console.log(threadsForFrontend)
     // console.log(req.user)
     // console.log(bookclub)
+
     res.render('bookclub', {
-        loggedIn: true,
-        bookclubName: bookclub.name,
-        userName: req.user.firstName,
-        accountType: req.user.accountType,
-        readers: bookclub.readers,
-        bookclubID: bookclub.id,
-        clubId: bookclub.clubId
+        user: {
+            loggedIn: true,
+            firstName: req.user.firstName,
+            accountType: req.user.accountType
+        },
+        bookclub: {
+            name: bookclub.name,
+            readers: bookclub.readers,
+            id: bookclub._id,
+            clubId: bookclub.clubId
+        },
+        threads: threadsForFrontend
     })
 }
 

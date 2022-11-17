@@ -4,7 +4,7 @@
     </section>
     <section id="nav-links">
         <ul>
-            <% if (!loggedIn) { %>
+            <% if (!user.loggedIn) { %>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">SignUp</a></li>
             <% } else { %>
