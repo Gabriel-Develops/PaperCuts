@@ -11,5 +11,6 @@ router.put('/:bookclubID/addReader', ensureAuth, ensureClubmaker, bookclubContro
 router.put('/:bookclubID/leaveBookclub', ensureAuth, bookclubController.leaveBookclub)
 router.delete('/:bookclubID', ensureAuth, ensureClubmaker, bookclubController.deleteBookclub)
 router.post('/:bookclubID/createThread', ensureAuth, threadController.createThread)
+router.get('/:bookclubID/thread/:threadId', ensureAuth, threadController.getThread)
 
 module.exports = router

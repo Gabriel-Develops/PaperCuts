@@ -21,3 +21,27 @@ exports.createThread = async (req, res) => {
 
     res.redirect('/bookclub/' + req.params.bookclubID)
 }
+
+exports.getThread = async (req, res) => {
+    let thread
+    try {
+        thread = await Thread.findById(req.params.threadId)
+        console.log(thread)
+    } catch(e) {
+        console.error(e)
+    }
+    res.render('thread', {
+        user: {
+            loggedIn: true,
+            accountType: req.user.accountType
+        },
+        thread: {
+            id: thread._id,
+            title: thread.title,
+            description: thread.description,
+            author: thread.author,
+            likes: thread.likes,
+            createdAt: thread.createdAt
+        }
+    })
+}

@@ -138,3 +138,8 @@
 .copy-code {
     cursor: pointer;
 }
+
+/* Thread */
+.thread-description {
+    white-space: pre;
+}
