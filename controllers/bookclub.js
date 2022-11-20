@@ -151,7 +151,7 @@ exports.addBookclub = async (req, res) => {
 
 exports.leaveBookclub = async (req, res) => {
     console.log('Bookclub left!')
-    const temp = await Bookclub.findByIdAndUpdate(
+    await Bookclub.findByIdAndUpdate(
         // Condition (id)
         req.params.bookclubID,
         // Update
@@ -162,7 +162,6 @@ exports.leaveBookclub = async (req, res) => {
             }
         }
     )
-    console.log('result', temp)
     res.redirect('/feed')
 }
 

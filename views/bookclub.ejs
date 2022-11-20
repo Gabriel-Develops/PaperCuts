@@ -2,7 +2,7 @@
 
 <main>
     <%- include('partials/nav') %>
-    <%console.log(user)%>
+    <%//console.log(user)%>
     <h1>Welcome <%= user.firstName %> to <%= bookclub.name %></h1> 
     <span>Join Code: <span class="copy-code" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span></span>
     <% if (user.accountType === 'clubmaker') { %>
@@ -41,7 +41,7 @@
     <% if (threads.length) { %>
         <section>
             <% threads.forEach(thread => { %>
-                <%console.log(thread)%>
+                <%//console.log(thread)%>
                 <a href="/bookclub/<%= bookclub.id %>/thread/<%= thread.id %>"">
                     <h3><%= thread.title %></h3>
                     <p><%= thread.description %></p>
