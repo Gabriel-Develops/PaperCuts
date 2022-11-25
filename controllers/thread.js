@@ -38,10 +38,18 @@ exports.getThread = async (req, res) => {
                 author: thread.author,
                 likes: thread.likes,
                 createdAt: thread.createdAt
+            },
+            bookclub: {
+                id: req.params.bookclubID
             }
         })
     } catch(e) {
         console.error(e)
         res.redirect('/')
     }
+}
+
+exports.createComment = (req, res) => {
+    console.log('Comment created')
+    res.redirect('/bookclub/' + req.params.bookclubID + '/thread/' + req.params.threadId)
 }
