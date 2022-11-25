@@ -23,25 +23,25 @@ exports.createThread = async (req, res) => {
 }
 
 exports.getThread = async (req, res) => {
-    let thread
     try {
-        thread = await Thread.findById(req.params.threadId)
+        const thread = await Thread.findById(req.params.threadId)
         console.log(thread)
+        res.render('thread', {
+            user: {
+                loggedIn: true,
+                accountType: req.user.accountType
+            },
+            thread: {
+                id: thread._id,
+                title: thread.title,
+                description: thread.description,
+                author: thread.author,
+                likes: thread.likes,
+                createdAt: thread.createdAt
+            }
+        })
     } catch(e) {
         console.error(e)
+        res.redirect('/')
     }
-    res.render('thread', {
-        user: {
-            loggedIn: true,
-            accountType: req.user.accountType
-        },
-        thread: {
-            id: thread._id,
-            title: thread.title,
-            description: thread.description,
-            author: thread.author,
-            likes: thread.likes,
-            createdAt: thread.createdAt
-        }
-    })
 }
