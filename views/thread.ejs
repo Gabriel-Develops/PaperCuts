@@ -6,6 +6,16 @@
         <h1><%= thread.title %></h1>
         <p class="thread-description"><%= thread.description %></p>
     </section>
+    <!-- Comments -->
+    <% if (comments.length) { %>
+        <section>
+            <ul>
+                <% comments.forEach(comment => { %>
+                    <li><%= comment.textContent %> created at <%= new Date(comment.createdAt).toDateString() %> by <%= comment.author %></li><br>
+                <% }) %>
+            </ul>
+        </section>
+    <% } %>
     <!-- Comment Form -->
     <section>
         <form action="/bookclub/<%=bookclub.id%>/thread/<%=thread.id%>/createComment" method="POST">

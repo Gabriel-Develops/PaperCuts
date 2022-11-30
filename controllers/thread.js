@@ -1,5 +1,6 @@
 const Thread = require('../models/Thread')
 const Comment = require('../models/Comment')
+const User = require('../models/User')
 const validator = require('validator')
 
 exports.createThread = async (req, res) => {
@@ -26,7 +27,16 @@ exports.createThread = async (req, res) => {
 exports.getThread = async (req, res) => {
     try {
         const thread = await Thread.findById(req.params.threadId)
-        console.log(thread)
+        const comments = await Comment.find({threadId: req.params.threadId})
+        const commentsForFE = []
+        for (const comment of comments) {
+            const author = await User.findById(comment.createdBy)
+            commentsForFE.push({
+                textContent: comment.text,
+                createdAt: comment.createdAt,
+                author: author.firstName
+            })
+        }
         res.render('thread', {
             user: {
                 loggedIn: true,
@@ -42,7 +52,8 @@ exports.getThread = async (req, res) => {
             },
             bookclub: {
                 id: req.params.bookclubID
-            }
+            },
+            comments: commentsForFE
         })
     } catch(e) {
         console.error(e)
