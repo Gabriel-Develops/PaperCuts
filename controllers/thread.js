@@ -1,4 +1,5 @@
 const Thread = require('../models/Thread')
+const Comment = require('../models/Comment')
 const validator = require('validator')
 
 exports.createThread = async (req, res) => {
@@ -49,7 +50,20 @@ exports.getThread = async (req, res) => {
     }
 }
 
-exports.createComment = (req, res) => {
-    console.log('Comment created')
-    res.redirect('/bookclub/' + req.params.bookclubID + '/thread/' + req.params.threadId)
+exports.createComment = async (req, res) => {
+    const commentText = req.body['comment-text'],
+        threadId = req.params.threadId,
+        bookclubId = req.params.bookclubID,
+        userId = req.user._id
+    try {
+        await Comment.create({
+            threadId: threadId,
+            text: commentText,
+            createdBy: userId
+        })
+        res.redirect('/bookclub/' + bookclubId + '/thread/' + threadId)
+    } catch(e) {
+        console.error(e)
+        res.redirect('/')
+    }
 }

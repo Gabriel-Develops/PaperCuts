@@ -9,6 +9,7 @@
     <!-- Comment Form -->
     <section>
         <form action="/bookclub/<%=bookclub.id%>/thread/<%=thread.id%>/createComment" method="POST">
+            <textarea name="comment-text" id="comment-text" cols="30" rows="5"></textarea>
             <button type="submit">Submit</button>
         </form>
     </section>
