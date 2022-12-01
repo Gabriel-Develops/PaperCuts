@@ -45,7 +45,7 @@
 
 
 
-/* Login Page */
+/* Login Page & Signup Page */
 #login-page {
     background-color: #ccd5ae;
     min-height: 100vh;
@@ -134,10 +134,57 @@
     color: #666666;
 }
 
+
+
+
+
+/* Feed */
+#feed {
+    background-color: #ccd5ae;
+    min-height: 100vh;
+    text-align: center;
+}
+
+#create-bookclub-form {
+    border: 1px solid black;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+#bookclubs {
+    border: 1px solid black;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 2rem;
+    margin-block: 2rem;
+}
+
+#bookclubs ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#bookclubs ul li {
+    flex-basis: 33.3333%;
+}
+
+#bookclubs ul li a {
+    border: 1px solid black;
+    width: 100%;
+    display: block;
+}
+
+
+
+
 /* Bookclub */
 .copy-code {
     cursor: pointer;
 }
+
+
+
+
 
 /* Thread */
 .thread-description {

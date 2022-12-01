@@ -1,16 +1,15 @@
 <%- include('partials/header') %>
 
-<main>
+<main id="feed">
     <%- include('partials/nav') %>
-    <h1>Welcome to the BookClub</h1>
-
-    <h1>Your are logged in!</h1>
-    <h2>You are a Clubmaker!</h2>
     <% if (bookclubs) { %>
-        <section>
-            <% bookclubs.forEach(x => { %>
-                <a href="/bookclub/<%= x.id %>"><%= x.name %></a>
-            <% }) %>
+        <section id="bookclubs">
+            <h1>Bookclubs</h1>
+            <ul>
+                <% bookclubs.forEach(x => { %>
+                    <li><a href="/bookclub/<%= x.id %>"><%= x.name %></a></li>
+                <% }) %>
+            </ul>
         </section>
     <% } %>
     <div>
@@ -20,12 +19,13 @@
             <% }) %>
         <% } %>
     </div>
-    <form action="/bookclub" method="POST">
-        <label for="name">Name of your Bookclub</label>
-        <input type="text" id="name" name="name">
-        <button type="submit">Create Bookclub</button>
-    </form>
-    <a href="/logout">Logout</a>
+    <section id="create-bookclub-form">
+        <form action="/bookclub" method="POST">
+            <label for="name">Name of your Bookclub</label>
+            <input type="text" id="name" name="name">
+            <button type="submit">Create Bookclub</button>
+        </form>
+    </section>
 </main>
 
 <%- include('partials/footer') %>
