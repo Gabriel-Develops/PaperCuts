@@ -15,7 +15,7 @@ exports.getFeed = async (req, res) => {
         const bookclubs = await Bookclub.find({readers: req.user.id})
         res.render('feedReader', {
             user: {
-                loggedIn: false
+                loggedIn: true
             }, 
             bookclubs: bookclubs
         })
@@ -24,7 +24,7 @@ exports.getFeed = async (req, res) => {
         const bookclubs = await Bookclub.find({clubmaker: req.user.id})
         res.render('feedClubmaker', {
             user: {
-                loggedIn: false
+                loggedIn: true
             }, 
             bookclubs: bookclubs
         })
