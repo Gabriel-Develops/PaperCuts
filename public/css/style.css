@@ -162,16 +162,20 @@
 #bookclubs ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #bookclubs ul li {
-    flex-basis: 33.3333%;
+    --flex-margin-size: 2rem;
+    margin: var(--flex-margin-size);
+    flex-basis: calc(33.3333% - (var(--flex-margin-size) * 2));
 }
 
 #bookclubs ul li a {
     border: 1px solid black;
     width: 100%;
     display: block;
+    padding-block: 1rem;
 }
 
 
