@@ -73,7 +73,15 @@ html {
     padding-block: 1.5rem;
 }
 
-#nav-main h1 a {
+#nav-main img, #nav-main h1 {
+    vertical-align: middle;
+}
+
+#nav-main h1 {
+    display: inline-block;
+}
+
+#nav-main section>a {
     color: white;
 }
 
