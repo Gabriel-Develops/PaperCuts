@@ -145,14 +145,10 @@
     text-align: center;
 }
 
-#create-bookclub-form {
-    border: 1px solid black;
-    width: fit-content;
-    margin-inline: auto;
-}
-
 #bookclubs {
-    border: 1px solid black;
+    border: 5px solid #344E41;
+    background-color: #fefae0;
+    border-radius: 10px;
     width: fit-content;
     margin-inline: auto;
     padding: 2rem;
@@ -172,12 +168,55 @@
 }
 
 #bookclubs ul li a {
-    border: 1px solid black;
+    background: linear-gradient(to right, #A3B18A, #588157);
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
     width: 100%;
     display: block;
     padding-block: 1rem;
 }
 
+.feed-form {
+    border: 5px solid #344E41;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+}
+.feed-form h2 {
+    margin-bottom: 1rem;
+}
+
+.feed-form label {
+    width: 50%;
+}
+
+.feed-form input {
+    width: 50%;
+    border: 3px solid #b4b9be;
+    border-radius: 4px;
+    padding: .3rem;
+}
+
+.feed-form input:focus {
+    border: 3px solid #787878;
+    outline: none;
+}
+
+.feed-form button[type="submit"] {
+    color: white;
+    background: #606c38;
+    border: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: .5rem;
+    margin-top: 1rem;
+    width: 60%;
+}
 
 
 
