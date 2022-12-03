@@ -1,10 +1,44 @@
 <%- include('partials/header') %>
 
-<main>
-    <h1>Welcome to the BookClub</h1>
-
-    <h1>Your are logged in!</h1>
-    <a href="/logout">Logout</a>
+<main id="feed">
+    <%- include('partials/nav') %>
+    <% if (bookclubs) { %>
+        <section id="bookclubs">
+            <h1>Bookclubs</h1>
+            <ul>
+                <% bookclubs.forEach(x => { %>
+                    <li><a href="/bookclub/<%= x.id %>"><%= x.name %></a></li>
+                <% }) %>
+            </ul>
+        </section>
+    <% } %>
+    <div>
+        <% if (locals.messages.errors) { %>
+            <% locals.messages.errors.forEach( el => { %>
+                <p><%= el.msg %></p>
+            <% }) %>
+        <% } %>
+    </div>
+    <% if (user.accountType === 'clubmaker') { %>
+        <section class="feed-form">
+            <h2>Create your very own Bookclub here!</h2>
+            <form action="/bookclub" method="POST">
+                <label for="name">Name of your Bookclub</label>
+                <input type="text" id="name" name="name">
+                <button type="submit">Create Bookclub</button>
+            </form>
+        </section>
+    <% } else if (user.accountType === 'reader') { %>
+        <section class="feed-form">
+            <h2>Join a Bookclub today!</h2>
+            <p>Simply paste the club code below</p>
+            <form action="/bookclub?_method=PUT" method="POST">
+                <label for="clubCode">ClubCode</label>
+                <input type="text" name="clubCode" id="clubCode">
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    <% } %>
 </main>
 
 <%- include('partials/footer') %>

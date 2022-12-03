@@ -9,28 +9,26 @@ exports.getIndex =  (req, res) => {
 }
 
 exports.getFeed = async (req, res) => {
-    if (req.user.accountType === 'reader'){
-        // We are searching through the reader array in the bookclub objects
-        // $elemMatch is not necessary because this is a single query condition
-        const bookclubs = await Bookclub.find({readers: req.user.id})
-        res.render('feedReader', {
+    try {
+        let bookclubs
+        if (req.user.accountType === 'reader'){
+            // We are searching through the reader array in the bookclub objects
+            // $elemMatch is not necessary because this is a single query condition
+            bookclubs = await Bookclub.find({readers: req.user.id})
+        }
+        else if (req.user.accountType === 'clubmaker') {
+            bookclubs = await Bookclub.find({clubmaker: req.user.id})
+        }
+    
+        res.render('feed', {
             user: {
-                loggedIn: true
+                loggedIn: true,
+                accountType: req.user.accountType
             }, 
             bookclubs: bookclubs
         })
-    }
-    else if (req.user.accountType === 'clubmaker') {
-        const bookclubs = await Bookclub.find({clubmaker: req.user.id})
-        res.render('feedClubmaker', {
-            user: {
-                loggedIn: true
-            }, 
-            bookclubs: bookclubs
-        })
-    }
-    else {
-        console.error('accountType incorrect', req.body.accountType)
-        res.redirect('/logout')
+    } catch(e) {
+        console.error(e)
+        res.redirect('/')
     }
 }
