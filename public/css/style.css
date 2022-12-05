@@ -149,7 +149,7 @@
     border: 5px solid #344E41;
     background-color: #fefae0;
     border-radius: 10px;
-    width: fit-content;
+    max-width: 95%;
     margin-inline: auto;
     padding: 2rem;
     margin-block: 2rem;
@@ -168,13 +168,35 @@
 }
 
 #bookclubs ul li a {
-    background: linear-gradient(to right, #A3B18A, #588157);
+    background-color: whitesmoke;
+    border: 2px solid black;
     border-radius: 10px;
-    color: white;
-    font-weight: 600;
+    color: black;
     width: 100%;
     display: block;
-    padding-block: 1rem;
+    text-align: start;
+    padding: 1rem;
+}
+
+.bookclub-container div {
+    display: flex;
+}
+
+.bookclub-container h3 {
+    margin-right: auto;
+}
+
+.bookclub-container p {
+    margin: 0;
+    margin-block: 1rem .5rem;
+}
+
+.bookclub-container #thread-preview {
+    color: black;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .feed-form {

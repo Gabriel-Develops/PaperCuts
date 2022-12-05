@@ -8,18 +8,20 @@
             <ul>
                 <% bookclubs.forEach(bookclub => { %>
                     <li>
-                        <a href="/bookclub/<%= bookclub.id %>">
-                            <h3 style="display: inline;"><%= bookclub.name %></h3>
-                            <% if (bookclub.readers.length) { %>
-                                <span>Club Members: <%= bookclub.readers.length %></span>
-                            <% } else { %>
-                                <span>No Members yet!</span>
-                            <% } %>
-                            <br>
+                        <a href="/bookclub/<%= bookclub.id %>" class="bookclub-container">
+                            <div>
+                                <h3><%= bookclub.name %></h3>
+                                <% if (bookclub.readers.length) { %>
+                                    <span>Club Members: <%= bookclub.readers.length %></span>
+                                <% } else { %>
+                                    <span>No Members yet!</span>
+                                <% } %>
+                            </div>
                             <% if (bookclub.recentThread) { %>
-                                <span>Recent Thread: <%= bookclub.recentThread.title %> <%= bookclub.recentThread.description %></span>
+                                <p>Current Discussion:</p>
+                                <p id="thread-preview"><span class="bold-600"><%= bookclub.recentThread.title %></span> - <%= bookclub.recentThread.description %></p>
                             <% } else { %>
-                                <span>No recent threads</span>
+                                <p>No recent threads</p>
                             <% } %>
                         </a>
                     </li>
