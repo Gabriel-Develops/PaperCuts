@@ -74,7 +74,8 @@ exports.getBookclub = async (req, res) => {
             name: bookclub.name,
             readers: bookclub.readers,
             id: bookclub._id,
-            clubId: bookclub.clubId
+            clubId: bookclub.clubId,
+            createdAt: bookclub.createdAt
         },
         threads: threadsForFrontend
     })
