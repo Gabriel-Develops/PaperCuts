@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+#home-page p {
+    margin-top: 1rem;
+}
+
 #home-page > section {
     margin-block-start: 10%;
     margin-inline: 10%;
