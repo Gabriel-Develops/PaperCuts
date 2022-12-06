@@ -2,9 +2,25 @@
 
 <main>
     <%- include('partials/nav') %>
-    <%//console.log(user)%>
-    <h1>Welcome <%= user.firstName %> to <%= bookclub.name %></h1> 
-    <span>Join Code: <span class="copy-code" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span></span>
+    <!-- Bookclub About -->
+    <section style="border: 1px solid black; width: fit-content; float: right;">
+        <h1>Welcome to <%= bookclub.name %></h1>
+            <p><span class="bold-600"><%= bookclub.readers.length %></span> Readers</p>
+        <p>Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></p>
+        <!-- Member List -->
+        <% if (bookclub.readers.length) { %>
+            <section>
+                <p>Readers:</p>
+                <ul>
+                    <% bookclub.readers.forEach(reader => { %>
+                        <li><%= reader.firstName %></li>
+                    <% }) %>
+                </ul>
+            </section>
+        <% } %>
+        <p>Invite more readers by sending them the following code</p>
+        <span>Club Code: <span class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span> Simply click to copy!</span>
+    </section>
     <% if (user.accountType === 'clubmaker') { %>
         <form action="/bookclub/<%= bookclub.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete Bookclub</button>
