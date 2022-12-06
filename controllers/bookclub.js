@@ -47,6 +47,13 @@ exports.getBookclub = async (req, res) => {
             creadtedAt: thread.createdAt
         })
     }
+    const readers = []
+    for (const reader of bookclub.readers) {
+        const userQuery = await User.findById(reader._id)
+        readers.push({
+            firstName: userQuery.firstName
+        })
+    }
     // We could do clean up the threads using a map, but since we have an asynchronious action we would need to use Promise.all to resolve the array of promises that would be returned, this is a valid solution but using a for...of loop feels more readable
     // const threads = await Promise.all(threadsFromDB.map(async thread => {
     //     const author = await User.findById(thread.author)
@@ -72,7 +79,7 @@ exports.getBookclub = async (req, res) => {
         },
         bookclub: {
             name: bookclub.name,
-            readers: bookclub.readers,
+            readers: readers,
             id: bookclub._id,
             clubId: bookclub.clubId,
             createdAt: bookclub.createdAt
