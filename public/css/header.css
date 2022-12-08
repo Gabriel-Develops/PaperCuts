@@ -54,7 +54,10 @@ html {
     color: white;
     background: #f8767e;
     border-radius: 10px;
-    padding: 1rem .5rem;
+}
+
+.copy-code {
+    cursor: pointer;
 }
 
 .full-width {
