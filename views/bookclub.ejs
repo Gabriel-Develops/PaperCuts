@@ -1,84 +1,88 @@
 <%- include('partials/header') %>
 
-<main>
+<main id="bookclub-main">
     <%- include('partials/nav') %>
-    <!-- Bookclub About -->
-    <section style="border: 1px solid black; width: fit-content; float: right;">
-        <h1>Welcome to <%= bookclub.name %></h1>
-            <p><span class="bold-600"><%= bookclub.readers.length %></span> Readers</p>
-        <p>Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></p>
-        <!-- Member List -->
-        <% if (bookclub.readers.length) { %>
+    <section id="bookclub-flex-container">
+        <!-- Left Section -->
+        <section>
             <section>
-                <p>Readers:</p>
-                <ul>
-                    <% bookclub.readers.forEach(reader => { %>
-                        <li><%= reader.firstName %></li>
-                    <% }) %>
-                </ul>
+                <h1>Welcome to <%= bookclub.name %></h1>
+                <section id="book-info">
+                    <p>We are currently reading BOOK_NAME</p>
+                    <p>BOOK_DESCRIPTION</p>
+                    <ul>
+                        <li>BOOK_LINKS</li>
+                        <li>BOOK_LINKS</li>
+                        <li>BOOK_LINKS</li>
+                    </ul>
+                </section>
             </section>
-        <% } %>
-        <p>Invite more readers by sending them the following code</p>
-        <span>Club Code: <span class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span> Simply click to copy!</span>
-    </section>
-    <% if (user.accountType === 'clubmaker') { %>
-        <form action="/bookclub/<%= bookclub.id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete Bookclub</button>
-        </form>
-    <% } else if (user.accountType === 'reader') { %>
-        <form action="/bookclub/<%= bookclub.id %>/leaveBookclub?_method=PUT" method="POST">
-            <button type="submit">Leave Bookclub</button>
-        </form>
-    <% } %>
-    <h1>You are a <%= user.accountType[0].toUpperCase() + user.accountType.slice(1) %></h1>
-    <% //console.log(readers) %>
-    <% if (bookclub.readers.length) { %>
-        <h1>Readers in bookclub are <%= bookclub.readers.join(' ') %></h1>
-    <% } else { %>
-        <h1>No readers in bookclub yet</h1>
-    <% } %>
-    <% if (user.accountType === 'clubmaker') { %>
-        <section>
-            <div>
-                <% if (locals.messages.errors) { %>
-                    <% locals.messages.errors.forEach( el => { %>
-                        <p><%= el.msg %></p>
-                    <% }) %>
-                <% } %>
-            </div>
-            <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST">
-                <label for="readerEmail">Add a reader by email</label>
-                <input type="text" id="readerEmail" name="readerEmail">
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-    <% } %>
-    <!-- Threads -->
-    <% if (threads.length) { %>
-        <section>
-            <% threads.forEach(thread => { %>
-                <%//console.log(thread)%>
-                <a href="/bookclub/<%= bookclub.id %>/thread/<%= thread.id %>"">
-                    <h3><%= thread.title %></h3>
-                    <p><%= thread.description %></p>
-                </a>
-            <% }) %>
-        </section>
-    <% } %>
-    <!-- Thread Form -->
-    <section>
-        <div>
-            <% if (locals.messages.threadError) { %>
-                <p><%= locals.messages.threadError[0] %></p>
+            <!-- Threads -->
+            <% if (threads.length) { %>
+                <section id="threads">
+                    <ul>
+                        <% threads.forEach(thread => { %>
+                            <li class="full-width">
+                                <a href="/bookclub/<%= bookclub.id %>/thread/<%= thread.id %>" class="thread">
+                                    <h3><%= thread.title %></h3>
+                                    <p><%= thread.description %></p>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </section>
             <% } %>
-        </div>
-        <form action="/bookclub/<%= bookclub.id %>/createThread" method="POST">
-            <input name="title" placeholder="Title" type="text">
-            <textarea name="description" placeholder="Text" rows="5" cols="33"></textarea>
-            <button type="submit">Submit</button>
-        </form>
+            <!-- Thread Form -->
+            <section id="thread-form">
+                <h3>Create a New Thread</h3>
+                <div>
+                    <% if (locals.messages.threadError) { %>
+                        <p><%= locals.messages.threadError[0] %></p>
+                    <% } %>
+                </div>
+                <form action="/bookclub/<%= bookclub.id %>/createThread" method="POST">
+                    <input name="title" placeholder="Title" type="text">
+                    <textarea name="description" placeholder="What are your thoughts?" rows="5" cols="33"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </section><!--
+            Right Section
+            Bookclub About
+        --><section>
+            <span>Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></span>
+            <p><span class="bold-600"><%= bookclub.readers.length %></span> Readers:</p>
+            <!-- Member List -->
+            <% if (bookclub.readers.length) { %>
+                <section>
+                    <ul>
+                        <% bookclub.readers.forEach(reader => { %>
+                            <li class="full-width"><%= reader.firstName %></li>
+                        <% }) %>
+                    </ul>
+                </section>
+            <% } %>
+            <p>Leave</p>
+            <p>Invite more readers by sending them the following code</p>
+            <span>Club Code: <span class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span> Simply click to copy!</span>
+            <% if (user.accountType === 'clubmaker') { %>
+                <section>
+                    <div>
+                        <% if (locals.messages.errors) { %>
+                            <% locals.messages.errors.forEach( el => { %>
+                                <p><%= el.msg %></p>
+                            <% }) %>
+                        <% } %>
+                    </div>
+                    <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST">
+                        <label for="readerEmail">Add a reader by email</label>
+                        <input type="text" id="readerEmail" name="readerEmail">
+                        <button type="submit">Submit</button>
+                    </form>
+                </section>
+            <% } %>
+        </section>
     </section>
-
 </main>
 
 <%- include('partials/footer') %>

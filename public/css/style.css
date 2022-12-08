@@ -247,10 +247,62 @@
 
 
 /* Bookclub */
-.copy-code {
-    cursor: pointer;
+#bookclub-main {
+    background-color: #ccd5ae;
+    min-height: 100vh;
 }
 
+#bookclub-flex-container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2rem;
+}
+
+#bookclub-flex-container > section {
+    background-color: #fefae0;
+}
+
+#bookclub-flex-container > section:first-of-type {
+    flex-basis: 70%;
+    border: 1px solid black;
+    padding: 2%;
+}
+
+#bookclub-flex-container > section:last-of-type {
+    flex-basis: 20%;
+    border: 1px solid black;
+}
+
+#book-info {
+    border: 1px solid black;
+}
+
+#threads {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.thread {
+    width: 100%;
+    display: inline-block;
+    border: 10px solid blue;
+}
+.thread p {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#thread-form {
+    border: 1px solid black;
+    width: fit-content;
+    padding: 1rem;
+    margin-inline: auto;
+    margin-block-start: 1rem;
+}
+#thread-form input, textarea {
+    width: 100%
+}
 
 
 
