@@ -69,6 +69,15 @@ html {
     font-weight: 600;
 }
 
+.bubble {
+    display: inline-block;
+    border-radius: 5px;
+    background: darkslategrey;
+    color: white;
+    padding: .5rem 1rem;
+    margin-block: .4rem;
+}
+
 /******************************************/
 /* LAYOUT
 /******************************************/
