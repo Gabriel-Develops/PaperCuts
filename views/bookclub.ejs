@@ -5,18 +5,7 @@
     <section id="bookclub-flex-container">
         <!-- Left Section -->
         <section>
-            <section>
-                <h1>Welcome to <%= bookclub.name %></h1>
-                <section id="book-info">
-                    <p>We are currently reading BOOK_NAME</p>
-                    <p>BOOK_DESCRIPTION</p>
-                    <ul>
-                        <li>BOOK_LINKS</li>
-                        <li>BOOK_LINKS</li>
-                        <li>BOOK_LINKS</li>
-                    </ul>
-                </section>
-            </section>
+            <h1>Welcome to <%= bookclub.name %></h1>
             <!-- Threads -->
             <% if (threads.length) { %>
                 <section id="threads">
@@ -49,19 +38,32 @@
         </section><!--
             Right Section
             Bookclub About
-        --><section>
-            <span>Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></span>
-            <p><span class="bold-600"><%= bookclub.readers.length %></span> Readers:</p>
-            <!-- Member List -->
+        --><section id="about-bookclub">
+            <h2>About Bookclub</h2>
+            <span class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></span>
+            <span class="bubble"><%= bookclub.readers.length %> Readers</span>
+            <!-- Book Info -->
+            <section id="book-info">
+                <img style="float: right; width: 150px;" src="https://covers.openlibrary.org/b/id/9153902-L.jpg" alt="">
+                <p>We are currently reading BOOK_NAME</p>
+                <p>BOOK_DESCRIPTION</p>
+                <ul>
+                    <li>BOOK_LINKS</li>
+                    <li>BOOK_LINKS</li>
+                    <li>BOOK_LINKS</li>
+                </ul>
+            </section>
+            <!-- Member List
             <% if (bookclub.readers.length) { %>
                 <section>
+                    <p>Readers</p>
                     <ul>
                         <% bookclub.readers.forEach(reader => { %>
                             <li class="full-width"><%= reader.firstName %></li>
                         <% }) %>
                     </ul>
                 </section>
-            <% } %>
+            <% } %> -->
             <p>Leave</p>
             <p>Invite more readers by sending them the following code</p>
             <span>Club Code: <span class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span> Simply click to copy!</span>
