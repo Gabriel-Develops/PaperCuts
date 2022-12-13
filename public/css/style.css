@@ -260,17 +260,23 @@
 
 #bookclub-flex-container > section {
     background-color: #fefae0;
+    border: 2px solid gainsboro;
+    border-radius: 10px;
+    padding: 2%;
 }
 
 #bookclub-flex-container > section:first-of-type {
     flex-basis: 70%;
-    border: 1px solid black;
-    padding: 2%;
 }
 
 #bookclub-flex-container > section:last-of-type {
     flex-basis: 20%;
-    border: 1px solid black;
+}
+
+#about-bookclub h2 {
+    margin-inline: auto;
+    width: fit-content;
+    margin-block-end: .5rem;
 }
 
 #book-info {
