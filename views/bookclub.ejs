@@ -67,9 +67,12 @@
                     </ul>
                 </section>
             <% } %> -->
-            <p>Leave</p>
-            <p>Invite more readers by sending them the following code</p>
-            <span>Club Code: <span class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></span> Simply click to copy!</span>
+            <!-- Club Code Section -->
+            <section id="club-code-container">
+                <p>This Bookclubs Invite Code</p>
+                <p class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></p>
+                <button class="share-code-button" data-clubid="<%= bookclub.clubId %>">Share Club Code</button>
+            </section>
             <% if (user.accountType === 'clubmaker') { %>
                 <section>
                     <div>
@@ -79,13 +82,14 @@
                             <% }) %>
                         <% } %>
                     </div>
-                    <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST">
+                    <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST" class="feed-form" id="add-reader-form">
                         <label for="readerEmail">Add a reader by email</label>
                         <input type="text" id="readerEmail" name="readerEmail">
                         <button type="submit">Submit</button>
                     </form>
                 </section>
             <% } %>
+            <p>Leave</p>
         </section>
     </section>
 </main>
