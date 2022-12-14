@@ -265,22 +265,9 @@
     padding: 2%;
 }
 
+/* Bookclub - Threads Section */
 #bookclub-flex-container > section:first-of-type {
     flex-basis: 70%;
-}
-
-#bookclub-flex-container > section:last-of-type {
-    flex-basis: 20%;
-}
-
-#about-bookclub h2 {
-    margin-inline: auto;
-    width: fit-content;
-    margin-block-end: .5rem;
-}
-
-#book-info {
-    border: 1px solid black;
 }
 
 #threads {
@@ -310,6 +297,45 @@
     width: 100%
 }
 
+/* Bookclub - About Section */
+#bookclub-flex-container > section:last-of-type {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+#about-bookclub h2 {
+    margin-inline: auto;
+    width: fit-content;
+    margin-block-end: .5rem;
+}
+
+#book-info {
+    border: 3px solid black;
+}
+
+#club-code-container {
+    margin-top: auto;
+    margin-block-end: .5rem;
+}
+#club-code-container p {
+    margin-inline: auto;
+    width: fit-content;
+}
+#club-code-container button {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    background: #344E41;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+#add-reader-form {
+}
 
 
 
