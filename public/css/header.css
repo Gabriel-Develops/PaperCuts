@@ -58,6 +58,12 @@ html {
 
 .copy-code {
     cursor: pointer;
+    background: white;
+    font-size: 1.5rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: .25rem .5rem;
+    margin-block: .5rem;
 }
 
 .full-width {
