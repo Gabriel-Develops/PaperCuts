@@ -40,8 +40,11 @@
             Bookclub About
         --><section id="about-bookclub">
             <h2>About Bookclub</h2>
-            <span class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></span>
-            <span class="bubble"><%= bookclub.readers.length %> Readers</span>
+            <!-- Quick Info -->
+            <ul>
+                <li class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></li>
+                <li class="bubble"><%= bookclub.readers.length %> Readers</li>
+            </ul>
             <!-- Book Info -->
             <section id="book-info">
                 <img style="float: right; width: 150px;" src="https://covers.openlibrary.org/b/id/9153902-L.jpg" alt="">
