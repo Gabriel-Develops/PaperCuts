@@ -1,37 +1,20 @@
-document.querySelectorAll('.copy-code').forEach(x => x.addEventListener('click', copyCode))
-function copyCode(e) {
-    copyToClip(e.target.dataset.clubid)
-}
-
-document.querySelectorAll('.share-code-button').forEach(x => x.addEventListener('click', shareCode))
-function shareCode(e) {
-    const button = window.getComputedStyle(e.target)
-    // Initial button styling reverts button dynamically to original style
-    const initialBackgroundColor = button.backgroundColor
-    const initialTextColor = button.color
+document.querySelectorAll('.copy-code').forEach(x => x.addEventListener('click', shareCode))
+async function shareCode(e) {
+    // Initial button text to be reverted to
     const initialText = e.target.textContent
 
-    // Style we want when clicked
-    const textToSet = 'Copied to Clipboard!'
-    const colorToSet = '#344E41'
-    const backgroundColorToSet = 'white'
+    // Text we want when clicked
+    const textToSet = 'Copied!'
 
     if (e.target.textContent !== textToSet) {
-        // Reverts to original styling as long as it wasn't clicked already after 3 seconds
+        // Reverts to original text as long as text does not match new text
         setTimeout(() => {
             e.target.textContent = initialText
-            e.target.style.backgroundColor = initialBackgroundColor
-            e.target.style.color = initialTextColor
         }, 3000)
     }
 
-    // Sets new styling for clicked button
+    // Sets new text for clicked button
     e.target.textContent = textToSet
-    e.target.style.backgroundColor = backgroundColorToSet
-    e.target.style.color = colorToSet
-    copyToClip(e.target.dataset.clubid)
-}
-
-async function copyToClip(string) {
-    await navigator.clipboard.writeText(string)
+    // Finally copies clubId to clipboard
+    await navigator.clipboard.writeText(e.target.dataset.clubid)
 }
