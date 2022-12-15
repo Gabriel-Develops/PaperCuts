@@ -38,17 +38,23 @@
         </section><!--
             Right Section
             Bookclub About
-        --><section id="about-bookclub">
-            <h2>About Bookclub</h2>
-            <!-- Quick Info -->
-            <ul>
-                <li class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></li>
-                <li class="bubble"><%= bookclub.readers.length %> Readers</li>
-            </ul>
+     --><section id="about-section">
+            <!-- Bookclub Info -->
+            <section id="bookclub-info">
+                <h2> About Bookclub</h2>
+                <!-- Quick Info -->
+                <ul>
+                    <li class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></li>
+                    <li class="bubble"><%= bookclub.readers.length %> Readers</li>
+                </ul>
+                <p>This Bookclubs Invite Code</p>
+                <button title="This Bookclubs Invite Code" class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></button>
+            </section>
             <!-- Book Info -->
             <section id="book-info">
-                <img style="float: right; width: 150px;" src="https://covers.openlibrary.org/b/id/9153902-L.jpg" alt="">
-                <p>We are currently reading BOOK_NAME</p>
+                <img src="https://covers.openlibrary.org/b/id/9153902-L.jpg" alt="">
+                <h2>Currently Reading</h2>
+                <p>BOOK_NAME</p>
                 <p>BOOK_DESCRIPTION</p>
                 <ul>
                     <li>BOOK_LINKS</li>
@@ -56,40 +62,44 @@
                     <li>BOOK_LINKS</li>
                 </ul>
             </section>
-            <!-- Member List
-            <% if (bookclub.readers.length) { %>
+            <!-- Members -->
+            <section>
                 <section>
-                    <p>Readers</p>
+                    <h2>Readers</h2>
                     <ul>
-                        <% bookclub.readers.forEach(reader => { %>
-                            <li class="full-width"><%= reader.firstName %></li>
-                        <% }) %>
+                        <% if (bookclub.readers.length) { %>
+                            <% bookclub.readers.forEach(reader => { %>
+                                <li class="bubble"><%= reader.firstName %></li>
+                            <% }) %>
+                        <% } else { %>
+                            <span class="bubble">No Members Yet</span>
+                        <% } %>
                     </ul>
                 </section>
-            <% } %> -->
-            <!-- Club Code Section -->
-            <section id="club-code-container">
-                <p>This Bookclubs Invite Code</p>
-                <p class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></p>
-                <button class="share-code-button" data-clubid="<%= bookclub.clubId %>">Share Club Code</button>
             </section>
-            <% if (user.accountType === 'clubmaker') { %>
-                <section>
-                    <div>
-                        <% if (locals.messages.errors) { %>
-                            <% locals.messages.errors.forEach( el => { %>
-                                <p><%= el.msg %></p>
-                            <% }) %>
-                        <% } %>
-                    </div>
-                    <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST" class="feed-form" id="add-reader-form">
-                        <label for="readerEmail">Add a reader by email</label>
-                        <input type="text" id="readerEmail" name="readerEmail">
-                        <button type="submit">Submit</button>
-                    </form>
-                </section>
-            <% } %>
-            <p>Leave</p>
+            <!-- Settings -->
+            <section>
+                <% if (user.accountType === 'clubmaker') { %>
+                    <section>
+                        <h2>Add a Reader by Email</h2>
+                        <div>
+                            <% if (locals.messages.errors) { %>
+                                <% locals.messages.errors.forEach( el => { %>
+                                    <p class="error-message"><%= el.msg %></p>
+                                <% }) %>
+                            <% } %>
+                        </div>
+                        <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST" id="add-reader-form">
+                            <label for="readerEmail">Email:</label>
+                            <input type="text" id="readerEmail" name="readerEmail">
+                            <button type="submit">Submit</button>
+                        </form>
+                    </section>
+                <% } %>
+                <% if (user.accountType === 'reader') { %>
+                    <button id="leave-button">Leave Bookclub</button>
+                <% } %>
+            </section>
         </section>
     </section>
 </main>
