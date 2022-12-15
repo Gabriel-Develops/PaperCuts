@@ -258,16 +258,13 @@
     padding-top: 2rem;
 }
 
-#bookclub-flex-container > section {
-    background-color: #fefae0;
-    border: 2px solid gainsboro;
-    border-radius: 10px;
-    padding: 2%;
-}
-
 /* Bookclub - Threads Section */
 #bookclub-flex-container > section:first-of-type {
     flex-basis: 70%;
+    padding: 3rem;
+    background-color: #fefae0;
+    border: 2px solid gainsboro;
+    border-radius: 10px;
 }
 
 #threads {
@@ -304,37 +301,41 @@
     flex-direction: column;
 }
 
-#about-bookclub h2 {
-    margin-inline: auto;
-    width: fit-content;
-    margin-block-end: .5rem;
-}
-
-#book-info {
+#about-section > section {
     border: 3px solid black;
+    background-color: #fefae0;
+    border-radius: 20px 0px;
+    padding: 1rem 3rem;
+    margin-bottom: .5rem;
+}
+#bookclub-info p,
+#bookclub-info button {
+    width: fit-content;
+    margin-inline: auto;
 }
 
-#club-code-container {
-    margin-top: auto;
-    margin-block-end: .5rem;
-}
-#club-code-container p {
-    margin-inline: auto;
-    width: fit-content;
-}
-#club-code-container button {
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-    padding: .5rem 1rem;
-    border-radius: 5px;
-    background: #344E41;
-    color: white;
-    border: 0;
-    cursor: pointer;
+#book-info img {
+    float: right; 
+    width: 150px;
 }
 
 #add-reader-form {
+    border: 2px solid black;
+    padding-block: 1rem;
+}
+#add-reader-form button[type="submit"] {
+    width: 100%;
+}
+
+#leave-button {
+    color: white;
+    background-color: red;
+    border: 0;
+    border-radius: 5px;
+    width: 50%;
+    margin: 1rem auto;
+    padding: .5rem 1rem;
+    cursor: pointer;
 }
 
 
