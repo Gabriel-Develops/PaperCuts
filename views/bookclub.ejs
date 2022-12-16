@@ -46,6 +46,7 @@
                 <ul>
                     <li class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></li>
                     <li class="bubble"><%= bookclub.readers.length %> Readers</li>
+                    <li class="bubble">Created by - NAME</li>
                 </ul>
                 <p>This Bookclubs Invite Code</p>
                 <button title="This Bookclubs Invite Code" class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></button>
@@ -80,7 +81,7 @@
             <!-- Settings -->
             <section>
                 <% if (user.accountType === 'clubmaker') { %>
-                    <section>
+                    <section id="add-reader-email">
                         <h2>Add a Reader by Email</h2>
                         <div>
                             <% if (locals.messages.errors) { %>
@@ -89,7 +90,7 @@
                                 <% }) %>
                             <% } %>
                         </div>
-                        <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST" id="add-reader-form">
+                        <form action="/bookclub/<%= bookclub.id %>/addReader?_method=PUT" method="POST">
                             <label for="readerEmail">Email:</label>
                             <input type="text" id="readerEmail" name="readerEmail">
                             <button type="submit">Submit</button>

@@ -319,12 +319,30 @@
     width: 150px;
 }
 
-#add-reader-form {
-    border: 2px solid black;
-    padding-block: 1rem;
+#add-reader-email form label {
+    margin-block: 1rem;
+    display: inline-block;
 }
-#add-reader-form button[type="submit"] {
+
+#add-reader-email form input {
+    width: 50%;
+    border: 3px solid #b4b9be;
+    border-radius: 4px;
+    padding: .3rem;
+}
+#add-reader-email form input:focus {
+    border: 3px solid #787878;
+    outline: 0;
+}
+
+#add-reader-email form button[type="submit"] {
     width: 100%;
+    background-color: #606c38;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding-block: .5rem;
+    cursor: pointer;
 }
 
 #leave-button {
