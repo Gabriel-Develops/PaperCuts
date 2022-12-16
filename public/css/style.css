@@ -308,15 +308,24 @@
     padding: 1rem 3rem;
     margin-bottom: .5rem;
 }
-#bookclub-info p,
-#bookclub-info button {
+
+#about-section h2 {
+    margin-block-end: .4rem;
+}
+
+#bookclub-info p {
     width: fit-content;
+    margin-block: 1.5rem .5rem;
     margin-inline: auto;
 }
 
 #book-info img {
     float: right; 
     width: 150px;
+}
+#bookclub-info .copy-code {
+    margin-inline: auto;
+    display: block;
 }
 
 #add-reader-email form label {
