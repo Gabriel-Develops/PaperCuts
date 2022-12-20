@@ -273,21 +273,16 @@
     margin-block-start: 1rem;
 }
 
-#threads {
-    
-    
-}
 .thread {
     width: 100%;
     display: inline-block;
     border: 1px solid black;
-    border-radius: 5px;
     margin-block: .5rem;
     padding: .5rem 1rem;
 }
 .thread p {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
