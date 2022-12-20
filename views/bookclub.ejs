@@ -4,15 +4,17 @@
     <%- include('partials/nav') %>
     <section id="bookclub-flex-container">
         <!-- Left Section -->
-        <section>
-            <h1>Welcome to <%= bookclub.name %></h1>
+        <section id="thread-section">
+            <h1><%= bookclub.name %></h1>
             <!-- Threads -->
             <% if (threads.length) { %>
+                <h2>Discussions</h2>
                 <section id="threads">
                     <ul>
                         <% threads.forEach(thread => { %>
                             <li class="full-width">
                                 <a href="/bookclub/<%= bookclub.id %>/thread/<%= thread.id %>" class="thread">
+                                    <h5>Posted by Gabriel | SAT Feb 2nd 2022</h5>
                                     <h3><%= thread.title %></h3>
                                     <p><%= thread.description %></p>
                                 </a>
@@ -20,6 +22,8 @@
                         <% }) %>
                     </ul>
                 </section>
+            <% } else { %>
+                <h2>No Current Discussions</h2>
             <% } %>
             <!-- Thread Form -->
             <section id="thread-form">
