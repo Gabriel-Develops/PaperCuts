@@ -32,9 +32,11 @@ exports.createBookclub = async (req, res) => {
 
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
+    const clubmaker = await User.findById(bookclub.clubmaker)
+
     const threadsFromDB = await Thread.find({
         bookclubId: req.params.bookclubID
-    })
+    }).sort({createdAt: -1})
     const threadsForFrontend = []
     for (const thread of threadsFromDB) {
         const author = await User.findById(thread.author)
@@ -44,7 +46,7 @@ exports.getBookclub = async (req, res) => {
             title: thread.title,
             description: thread.description,
             likes: thread.likes,
-            creadtedAt: thread.createdAt
+            createdAt: thread.createdAt
         })
     }
     const readers = []
@@ -70,7 +72,6 @@ exports.getBookclub = async (req, res) => {
     // console.log(threadsForFrontend)
     // console.log(req.user)
     // console.log(bookclub)
-
     res.render('bookclub', {
         user: {
             loggedIn: true,
@@ -82,7 +83,8 @@ exports.getBookclub = async (req, res) => {
             readers: readers,
             id: bookclub._id,
             clubId: bookclub.clubId,
-            createdAt: bookclub.createdAt
+            createdAt: bookclub.createdAt,
+            createdBy: clubmaker.firstName
         },
         threads: threadsForFrontend
     })
