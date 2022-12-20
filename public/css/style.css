@@ -254,27 +254,36 @@
 
 #bookclub-flex-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding-top: 2rem;
 }
 
 /* Bookclub - Threads Section */
 #bookclub-flex-container > section:first-of-type {
     flex-basis: 70%;
-    padding: 3rem;
+    padding: 2rem 3rem;
     background-color: #fefae0;
-    border: 2px solid gainsboro;
+    border: 3px solid black;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#thread-section h2 {
+    margin-block-start: 1rem;
 }
 
 #threads {
-    border: 1px solid black;
-    border-radius: 5px;
+    
+    
 }
 .thread {
     width: 100%;
     display: inline-block;
-    border: 10px solid blue;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-block: .5rem;
+    padding: .5rem 1rem;
 }
 .thread p {
     display: -webkit-box;
@@ -285,13 +294,18 @@
 
 #thread-form {
     border: 1px solid black;
-    width: fit-content;
+    width: 60%;
     padding: 1rem;
     margin-inline: auto;
-    margin-block-start: 1rem;
+    margin-block-start: auto;
 }
 #thread-form input, textarea {
     width: 100%
+}
+
+#thread-form textarea {
+    resize: none;
+    height: 150px;
 }
 
 /* Bookclub - About Section */
