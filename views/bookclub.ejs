@@ -14,7 +14,7 @@
                         <% threads.forEach(thread => { %>
                             <li class="full-width">
                                 <a href="/bookclub/<%= bookclub.id %>/thread/<%= thread.id %>" class="thread">
-                                    <h5>Posted by Gabriel | SAT Feb 2nd 2022</h5>
+                                    <h5>Posted by <%= thread.createdBy %> | <%= thread.createdAt.toDateString().split(' ').slice(1).join(' ') %></h5>
                                     <h3><%= thread.title %></h3>
                                     <p><%= thread.description %></p>
                                 </a>
@@ -48,9 +48,9 @@
                 <h2> About Bookclub</h2>
                 <!-- Quick Info -->
                 <ul>
-                    <li class="bubble">Created on <%= new Date(bookclub.createdAt).toDateString().split(' ').slice(1).join(' ') %></li>
+                    <li class="bubble">Created on <%= bookclub.createdAt.toDateString().split(' ').slice(1).join(' ') %></li>
                     <li class="bubble"><%= bookclub.readers.length %> Readers</li>
-                    <li class="bubble">Created by - NAME</li>
+                    <li class="bubble">Created by <%= bookclub.createdBy %></li>
                 </ul>
                 <p>This Bookclubs Invite Code</p>
                 <button title="This Bookclubs Invite Code" class="copy-code bold-600" data-clubid="<%= bookclub.clubId %>"><%= bookclub.clubId %></button>
