@@ -250,6 +250,7 @@
 #bookclub-main {
     background-color: #ccd5ae;
     min-height: 100vh;
+    padding-block-end: 1rem;
 }
 
 #bookclub-flex-container {
@@ -276,9 +277,15 @@
 .thread {
     width: 100%;
     display: inline-block;
-    border: 1px solid black;
+    border: 2px solid black;
+    background-color: #faedcd;
     margin-block: .5rem;
     padding: .5rem 1rem;
+}
+
+.thread:hover {
+    border-color: #faedcd;
+    color: black;
 }
 .thread p {
     display: -webkit-box;
@@ -288,19 +295,45 @@
 }
 
 #thread-form {
-    border: 1px solid black;
     width: 60%;
     padding: 1rem;
     margin-inline: auto;
     margin-block-start: auto;
 }
-#thread-form input, textarea {
-    width: 100%
+#thread-form input, #thread-form textarea {
+    width: 100%;
+    border: 3px solid #b4b9be;
+    border-radius: 4px;
+    padding: .3rem;
+}
+
+#thread-form input:focus, #thread-form textarea:focus {
+    border: 3px solid #787878;
+    outline: 0;
+}
+
+#thread-form form input {
+    margin-block: .5rem;
 }
 
 #thread-form textarea {
     resize: none;
     height: 150px;
+    margin-block-end: 1rem;
+}
+
+#thread-form button[type="submit"] {
+    color: white;
+    background-color: #588157;
+    border: none;
+    margin-left: auto;
+    padding: .5rem 2rem;
+    display: block;
+    cursor: pointer;
+}
+
+#thread-form button[type="submit"]:hover {
+    background-color: #344E41;
 }
 
 /* Bookclub - About Section */
