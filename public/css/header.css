@@ -28,8 +28,12 @@ li {
 }
 
 /* Heading Margin Reset */
-h1, h2, h3, h4, h5, h6 p {
+h1, h2, h3, h4, h5, h6 p, pre {
     margin: 0;  
+}
+
+pre {
+    font-family: inherit;
 }
 
 /* Anchor Styling */
@@ -81,6 +85,50 @@ html {
     color: white;
     padding: .5rem 1rem;
     margin-block-end: .4rem;
+}
+
+/* Forms */
+#form-style-2 {
+    width: 60%;
+    padding: 1rem;
+    margin-inline: auto;
+    margin-block-start: auto;
+}
+#form-style-2 input, #form-style-2 textarea {
+    width: 100%;
+    border: 3px solid #b4b9be;
+    border-radius: 4px;
+    padding: .3rem;
+}
+
+#form-style-2 input:focus, #form-style-2 textarea:focus {
+    border: 3px solid #787878;
+    outline: 0;
+}
+
+#form-style-2 h3, 
+#form-style-2 form input {
+    margin-block-end: .5rem;
+}
+
+#form-style-2 textarea {
+    resize: none;
+    height: 150px;
+    margin-block-end: 1rem;
+}
+
+#form-style-2 button[type="submit"] {
+    color: white;
+    background-color: #588157;
+    border: none;
+    margin-left: auto;
+    padding: .5rem 2rem;
+    display: block;
+    cursor: pointer;
+}
+
+#form-style-2 button[type="submit"]:hover {
+    background-color: #344E41;
 }
 
 /******************************************/
