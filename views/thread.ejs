@@ -1,27 +1,41 @@
 <%- include('partials/header') %>
 
-<main>
+<main id="thread-main">
     <%- include('partials/nav') %>
     <section>
-        <h1><%= thread.title %></h1>
-        <p class="thread-description"><%= thread.description %></p>
-    </section>
-    <!-- Comments -->
-    <% if (comments.length) { %>
+        <!-- Thread Information -->
+        <section id="thread-info">
+            <h1><%= thread.title %></h1>
+            <pre class="thread-description"><%= thread.description %></pre>
+        </section>
+        <!-- Comments -->
         <section>
-            <ul>
+        <% if (comments.length) { %>
+            <ul class="comments">
                 <% comments.forEach(comment => { %>
-                    <li><%= comment.textContent %> created at <%= new Date(comment.createdAt).toDateString() %> by <%= comment.author %></li><br>
+                    <li>
+                        <p><strong><%= comment.author %></strong> - <%= comment.createdAt.toDateString().split(' ').slice(1).join(' ') %></p>
+                        <p><%= comment.textContent %></p>
+                    </li>
                 <% }) %>
             </ul>
+        <% } else { %>
+            <h2>No comments yet</h2>
+        <% } %>
         </section>
-    <% } %>
-    <!-- Comment Form -->
-    <section>
-        <form action="/bookclub/<%=bookclub.id%>/thread/<%=thread.id%>/createComment" method="POST">
-            <textarea name="comment-text" id="comment-text" cols="30" rows="5"></textarea>
-            <button type="submit">Submit</button>
-        </form>
+        <!-- Comment Form -->
+        <section id="form-style-2">
+            <h3>Post a new comment!</h3>
+            <div>
+                <% if (locals.messages.threadError) { %>
+                    <p><%= locals.messages.threadError[0] %></p>
+                <% } %>
+            </div>
+            <form action="/bookclub/<%=bookclub.id%>/thread/<%=thread.id%>/createComment" method="POST">
+                <textarea name="comment-text" id="comment-text"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     </section>
 </main>
 
