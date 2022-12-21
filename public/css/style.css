@@ -294,48 +294,6 @@
     overflow: hidden;
 }
 
-#thread-form {
-    width: 60%;
-    padding: 1rem;
-    margin-inline: auto;
-    margin-block-start: auto;
-}
-#thread-form input, #thread-form textarea {
-    width: 100%;
-    border: 3px solid #b4b9be;
-    border-radius: 4px;
-    padding: .3rem;
-}
-
-#thread-form input:focus, #thread-form textarea:focus {
-    border: 3px solid #787878;
-    outline: 0;
-}
-
-#thread-form form input {
-    margin-block: .5rem;
-}
-
-#thread-form textarea {
-    resize: none;
-    height: 150px;
-    margin-block-end: 1rem;
-}
-
-#thread-form button[type="submit"] {
-    color: white;
-    background-color: #588157;
-    border: none;
-    margin-left: auto;
-    padding: .5rem 2rem;
-    display: block;
-    cursor: pointer;
-}
-
-#thread-form button[type="submit"]:hover {
-    background-color: #344E41;
-}
-
 /* Bookclub - About Section */
 #bookclub-flex-container > section:last-of-type {
     flex-basis: 20%;
@@ -410,6 +368,42 @@
 
 
 /* Thread */
+#thread-main {
+    background-color: #ccd5ae;
+    min-height: 100vh;
+}
+
+#thread-main > section {
+    background-color: #fefae0;
+    max-width: 93%;
+    margin-inline: auto;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-block-start: 2rem;
+}
+
+#thread-info {
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+#thread-info h1 {
+    border-bottom: 5px double black;
+    width: fit-content;
+}
+
 .thread-description {
     white-space: pre;
+}
+
+.comments li {
+    display: block;
+    background-color: #faedcd;
+    padding: .25rem 1rem;
+    margin-block: .5rem;
+}
+
+#comment-form {
+    width: 100%;
 }
