@@ -54,6 +54,7 @@ exports.createBookclub = async (req, res) => {
 exports.getBookclub = async (req, res) => {
     const bookclub = await Bookclub.findById(req.params.bookclubID)
     const clubmaker = await User.findById(bookclub.clubmaker)
+    const book = await Book.findById(bookclub.bookId)
 
     const threadsFromDB = await Thread.find({
         bookclubId: req.params.bookclubID
@@ -107,7 +108,14 @@ exports.getBookclub = async (req, res) => {
             createdAt: bookclub.createdAt,
             createdBy: clubmaker.firstName
         },
-        threads: threadsForFrontend
+        threads: threadsForFrontend,
+        book: {
+            title: book.title,
+            description: book.description,
+            author: book.author,
+            imgLink: book.imgLink,
+            infoLink: book.infoLink
+        }
     })
 }
 
