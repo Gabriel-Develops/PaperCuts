@@ -40,8 +40,10 @@
         <section class="feed-form">
             <h2>Create your very own Bookclub here!</h2>
             <form action="/bookclub" method="POST">
-                <label for="name">Name of your Bookclub</label>
-                <input type="text" id="name" name="name">
+                <label for="name">Name of your Bookclub</label><!--
+             --><input type="text" id="name" name="name">
+                <label for="book-isbn">Book's ISBN (ISBN-10 or ISBN-13)</label><!--
+             --><input type="text" id="book-isbn" name="book-isbn">
                 <button type="submit">Create Bookclub</button>
             </form>
         </section>
