@@ -5,6 +5,10 @@ const BookclubSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    bookId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     clubmaker: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
