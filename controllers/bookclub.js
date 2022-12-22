@@ -3,14 +3,36 @@ const Thread = require('../models/Thread')
 const validator = require('validator')
 const User = require('../models/User')
 const nanoid = require('../middleware/nanoid')
+const Book = require('../models/Book')
 
 exports.createBookclub = async (req, res) => {
     const validationErrors = []
     if (validator.isEmpty(req.body.name))
         validationErrors.push({msg: 'Name of bookclub can not be empty.'})
+    if (validator.isEmpty(req.body['book-isbn']))
+        validationErrors.push({msg: 'ISBN can not be empty.'})
+    if (!validator.isISBN(req.body['book-isbn']))
+        validationErrors.push({msg: 'ISBN must be ISBN-10 or ISBN-13.'})
     if (validationErrors.length) {
         req.flash('errors', validationErrors)
         return res.redirect(`/feed`)
+    }
+
+    const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + req.body['book-isbn'])
+    const results = await response.json()
+    const bookFromAPI = results.items[0]
+
+    let book
+    if (!await Book.findOne({googleBooksId: bookFromAPI.id})) {
+        book = await Book.create({
+            googleBooksId: bookFromAPI.id,
+            title: bookFromAPI.volumeInfo.title,
+            description: bookFromAPI.volumeInfo.description,
+            author: bookFromAPI.volumeInfo.authors[0],
+            imgLink: bookFromAPI.volumeInfo.imageLinks['thumbnail'],
+            infoLink: bookFromAPI.volumeInfo.infoLink
+        })
+        console.log(book)
     }
 
     let clubId, found
@@ -23,9 +45,8 @@ exports.createBookclub = async (req, res) => {
         name: req.body.name,
         clubmaker: req.user.id,
         clubId: clubId,
+        bookId: book.id
     })
-
-    console.log('Bookclub has been created!')
 
     res.redirect(`/bookclub/${bookclub.id}`)
 }
