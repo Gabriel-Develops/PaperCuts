@@ -57,15 +57,14 @@
             </section>
             <!-- Book Info -->
             <section id="book-info">
-                <img src="https://covers.openlibrary.org/b/id/9153902-L.jpg" alt="">
                 <h2>Currently Reading</h2>
-                <p>BOOK_NAME</p>
-                <p>BOOK_DESCRIPTION</p>
-                <ul>
-                    <li>BOOK_LINKS</li>
-                    <li>BOOK_LINKS</li>
-                    <li>BOOK_LINKS</li>
-                </ul>
+                <img src="<%= book.imgLink %>" alt="">
+                <h3><%= book.title %></h3>
+                <a href="<%= book.infoLink %>" target="_blank">
+                    <img src="https://img.icons8.com/windows/32/null/external-link-squared.png"/>
+                </a>
+                <h4>by <%= book.author %></h4>
+                <p><%= book.description %></p>
             </section>
             <!-- Members -->
             <section>
