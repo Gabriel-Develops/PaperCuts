@@ -324,14 +324,28 @@
     margin-block: 1.5rem .5rem;
     margin-inline: auto;
 }
-
-#book-info img {
-    float: right; 
-    width: 150px;
-}
 #bookclub-info .copy-code {
     margin-inline: auto;
     display: block;
+}
+
+#book-info > img {
+    float: right; 
+    width: 150px;
+}
+
+#book-info h3 {
+    display: inline-block;
+}
+#book-info a > img {
+    width: 1.5rem;
+    vertical-align: top;
+}
+#book-info p {
+    display: -webkit-box;
+    -webkit-line-clamp: 11;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 #add-reader-email form label {
