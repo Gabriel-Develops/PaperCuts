@@ -1,5 +1,6 @@
 const Bookclub = require('../models/Bookclub')
 const Thread = require('../models/Thread')
+const Book = require('../models/Book')
 
 exports.getIndex =  (req, res) => {
     res.render('index.ejs', {
@@ -22,7 +23,7 @@ exports.getFeed = async (req, res) => {
 
         const bookclubsForFE = []
         for (let bookclub of bookclubs) {
-            // If there are threads in the bookclub, it will default to an empty object
+            // If there are no threads in the bookclub, findOne will return null
             let threadQuery = await Thread.findOne({bookclubId: bookclub._id}).sort({$natural:-1}).limit(1)
             let recentThread
             if (threadQuery) {
@@ -33,12 +34,17 @@ exports.getFeed = async (req, res) => {
             } else {
                 recentThread = null
             }
+
+            const book = await Book.findById(bookclub.bookId)
+
             bookclubsForFE.push({
                 id: bookclub._id,
                 name: bookclub.name,
                 clubId: bookclub.clubId,
                 readers: bookclub.readers,
-                recentThread: recentThread
+                recentThread: recentThread,
+                bookTitle: book.title,
+                bookImg: book.imgLink
             })
         }
         res.render('feed', {
