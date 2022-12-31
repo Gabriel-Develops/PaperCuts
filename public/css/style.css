@@ -177,20 +177,35 @@
     border-radius: 10px;
     color: black;
     width: 100%;
-    display: block;
     text-align: start;
     padding: 1rem;
+    height: 100%;
 }
 
-.bookclub-container div {
-    display: flex;
+.bookclub-container {
+    gap: 1rem;
 }
 
-.bookclub-container h3 {
+.bookclub-container > section:first-of-type {
+    flex-grow: 1;
+}
+
+.bookclub-container > section:last-of-type {
+    padding-inline-start: 1rem;
+    border-left: 2px solid black;
+    width: 150px;
+    margin-inline-end: 1rem;
+}
+
+.bookclub-container > section:last-of-type p {
+    margin-block-end: .5rem;
+}
+
+.bookclub-container h2 {
     margin-right: auto;
 }
 
-.bookclub-container p {
+.bookclub-container section:first-of-type p {
     margin: 0;
     margin-block: 1rem .5rem;
 }
@@ -335,7 +350,7 @@
 }
 
 #book-info h3 {
-    display: inline-block;
+    display: inline;
 }
 #book-info a > img {
     width: 1.5rem;
