@@ -18,37 +18,43 @@ exports.createBookclub = async (req, res) => {
         return res.redirect(`/feed`)
     }
 
-    const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + req.body['book-isbn'])
-    const results = await response.json()
-    const bookFromAPI = results.items[0]
-
-    let book
-    if (!await Book.findOne({googleBooksId: bookFromAPI.id})) {
-        book = await Book.create({
-            googleBooksId: bookFromAPI.id,
-            title: bookFromAPI.volumeInfo.title,
-            description: bookFromAPI.volumeInfo.description,
-            author: bookFromAPI.volumeInfo.authors[0],
-            imgLink: bookFromAPI.volumeInfo.imageLinks['thumbnail'],
-            infoLink: bookFromAPI.volumeInfo.infoLink
+    try {
+        const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + req.body['book-isbn'])
+        const results = await response.json()
+        const bookFromAPI = results.items[0]
+    
+        let book
+        if (!await Book.findOne({googleBooksId: bookFromAPI.id})) {
+            book = await Book.create({
+                googleBooksId: bookFromAPI.id,
+                title: bookFromAPI.volumeInfo.title,
+                description: bookFromAPI.volumeInfo.description,
+                author: bookFromAPI.volumeInfo.authors[0],
+                imgLink: bookFromAPI.volumeInfo.imageLinks['thumbnail'],
+                infoLink: bookFromAPI.volumeInfo.infoLink
+            })
+            console.log(book)
+        }
+    
+        let clubId, found
+        do {
+            clubId = nanoid()
+            found = await Bookclub.findOne({clubId: clubId})
+        } while (found)
+    
+        const bookclub = await Bookclub.create({
+            name: req.body.name,
+            clubmaker: req.user.id,
+            clubId: clubId,
+            bookId: book.id
         })
-        console.log(book)
+    
+        res.redirect(`/bookclub/${bookclub.id}`)
+    } catch(e) {
+        console.error(e)
+        req.flash('errors', {msg: 'Book ISBN not found'})
+        res.redirect('/feed')
     }
-
-    let clubId, found
-    do {
-        clubId = nanoid()
-        found = await Bookclub.findOne({clubId: clubId})
-    } while (found)
-
-    const bookclub = await Bookclub.create({
-        name: req.body.name,
-        clubmaker: req.user.id,
-        clubId: clubId,
-        bookId: book.id
-    })
-
-    res.redirect(`/bookclub/${bookclub.id}`)
 }
 
 exports.getBookclub = async (req, res) => {
