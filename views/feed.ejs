@@ -8,21 +8,30 @@
             <ul>
                 <% bookclubs.forEach(bookclub => { %>
                     <li>
-                        <a href="/bookclub/<%= bookclub.id %>" class="bookclub-container">
-                            <div>
-                                <h3><%= bookclub.name %></h3>
-                                <% if (bookclub.readers.length) { %>
-                                    <span>Club Members: <%= bookclub.readers.length %></span>
-                                <% } else { %>
-                                    <span>No Members yet!</span>
-                                <% } %>
-                            </div>
-                            <% if (bookclub.recentThread) { %>
-                                <p>Current Discussion:</p>
-                                <p id="thread-preview"><span class="bold-600"><%= bookclub.recentThread.title %></span> - <%= bookclub.recentThread.description %></p>
-                            <% } else { %>
-                                <p>No recent threads</p>
-                            <% } %>
+                        <a href="/bookclub/<%= bookclub.id %>" class="bookclub-container flex-container">
+                            <section class="flex-direction-column">
+                                <div class="flex-container">
+                                    <h2><%= bookclub.name %></h2>
+                                    <% if (bookclub.readers.length) { %>
+                                        <span>Club Members: <%= bookclub.readers.length %></span>
+                                    <% } else { %>
+                                        <span>No Members yet!</span>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <% if (bookclub.recentThread) { %>
+                                        <p>Current Discussion:</p>
+                                        <p id="thread-preview"><span class="bold-600"><%= bookclub.recentThread.title %></span> - <%= bookclub.recentThread.description %></p>
+                                    <% } else { %>
+                                        <p>No recent threads</p>
+                                    <% } %>
+                                </div>
+                            </section>
+                            <section>
+                                <p class="zero-margin">Currently Reading</p>
+                                <h4><%= bookclub.bookTitle %></h4>
+                                <img src="<%= bookclub.bookImg %>>" alt="">
+                            </section>
                         </a>
                     </li>
                 <% }) %>
