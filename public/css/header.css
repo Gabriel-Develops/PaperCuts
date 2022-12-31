@@ -60,6 +60,18 @@ html {
     border-radius: 10px;
 }
 
+.flex-container {
+    display: flex;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.zero-margin {
+    margin: 0;
+}
+
 .copy-code {
     cursor: pointer;
     background: white;
